@@ -1,0 +1,92 @@
+title: Site para prestadores de serviço
+active: true
+order: 5
+icon: ''
+summary: >-
+  Sites para prestadores de serviço que querem ser encontrados e receber
+  orçamentos.
+whatsappMessage: Olá! Sou prestador de serviço e quero um site.
+seoTitle: Criação de Site para Prestadores de Serviço
+seoDescription: >-
+  Sites para prestadores de serviço receberem pedidos de orçamento pelo Google e
+  pelo WhatsApp. Rápidos, profissionais e fáceis de atualizar.
+blocks:
+  - discriminant: hero
+    value:
+      eyebrow: // serviços
+      title: 'Sites para prestadores de serviço receberem '
+      highlight: mais orçamentos
+      text: >-
+        Seja encontrado por quem precisa do seu serviço e receba pedidos direto
+        no WhatsApp.
+      primary:
+        label: Quero um orçamento
+        kind: whatsapp
+        value: ''
+      secondary:
+        label: Ver portfólio
+        kind: link
+        value: /portfolio
+      visual: mockup
+  - discriminant: pains
+    value:
+      title: Indicação é ótima, mas não basta
+      tone: white
+      items:
+        - title: Dependência de indicação
+          text: Quando as indicações param, a agenda esvazia.
+        - title: Invisível no Google
+          text: Quem procura seu serviço na região encontra o concorrente.
+        - title: Pouca credibilidade
+          text: >-
+            Sem site, fica difícil mostrar trabalhos anteriores e passar
+            confiança.
+  - discriminant: checklist
+    value:
+      title: O que o seu site terá
+      tone: light
+      items:
+        - Apresentação clara dos seus serviços
+        - Galeria de trabalhos realizados
+        - Pedido de orçamento pelo WhatsApp
+        - Depoimentos de clientes
+        - SEO para buscas na sua região
+        - Integração com Google Meu Negócio
+  - discriminant: steps
+    value:
+      eyebrow: como trabalhamos
+      title: Do primeiro contato ao site no ar
+      text: ''
+      tone: white
+      items:
+        - title: Conversa
+          text: Entendemos seu negócio, seu público e o que você precisa alcançar.
+        - title: Proposta
+          text: Você recebe escopo, prazo e investimento claros, sem letras miúdas.
+        - title: Criação
+          text: Desenhamos e desenvolvemos o projeto, com rodadas de revisão.
+        - title: No ar
+          text: Publicamos, configuramos o SEO inicial e seguimos dando suporte.
+  - discriminant: faq
+    value:
+      title: Perguntas frequentes
+      tone: light
+      items:
+        - question: Preciso ter muitas fotos de trabalhos?
+          answer: >-
+            Não. Começamos com o que você tiver e você adiciona novas fotos pelo
+            painel.
+        - question: O site aparece no Google da minha cidade?
+          answer: Configuramos o SEO local e o Google Meu Negócio para isso.
+        - question: Vocês atendem fora da minha cidade?
+          answer: Sim, atendemos em todo o Brasil, com todo o processo online.
+  - discriminant: cta
+    value:
+      title: Vamos encher a sua agenda de orçamentos?
+      text: Conte sua ideia. A resposta vem de quem vai desenvolver.
+      tone: primary
+      action:
+        label: Chamar no WhatsApp
+        kind: whatsapp
+        value: ''
+      anchor: contato

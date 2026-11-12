@@ -1,0 +1,54 @@
+---
+import Markdoc from '@markdoc/markdoc';
+import PageLayout from '@core/layouts/PageLayout.astro';
+import Hero from '@core/components/blocks/Hero.astro';
+import Section from '@core/components/ui/Section.astro';
+import Cta from '@core/components/blocks/Cta.astro';
+import { reader } from '@core/lib/content';
+import { articleSchema, breadcrumbSchema, type Crumb } from '@core/lib/schema';
+
+export async function getStaticPaths() {
+  const posts = await reader.collections.posts.all();
+  return posts.map((p) => ({ params: { slug: p.slug }, props: { slug: p.slug } }));
+}
+
+const { slug } = Astro.props;
+const post = (await reader.collections.posts.read(slug, { resolveLinkedFiles: true }))!;
+const html = Markdoc.renderers.html(Markdoc.transform(post.content.node));
+const description = post.seoDescription || post.summary;
+const crumbs: Crumb[] = [{ label: 'Início', href: '/' }, { label: 'Blog', href: '/blog' }, { label: post.title }];
+const date = post.date
+  ? new Date(`${post.date}T12:00:00`).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
+  : '';
+---
+
+<PageLayout title={post.seoTitle || post.title} description={description} image={post.cover || undefined}>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(
+      articleSchema({ title: post.title, description, path: Astro.url.pathname, date: post.date, image: post.cover }),
+    )}
+  />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema(crumbs, Astro.url.pathname))} />
+
+  <Hero eyebrow={date} title={post.title} text={post.summary || undefined} visual="none" breadcrumb={crumbs} />
+
+  <Section>
+    <article class="mx-auto max-w-3xl">
+      {post.cover && <img src={post.cover} alt="" class="mb-12 w-full rounded-[var(--radius-card)]" />}
+      <div class="prose-bit" set:html={html} />
+      {
+        post.tags.length > 0 && (
+          <ul class="mt-12 flex flex-wrap gap-2 border-t border-line pt-6">
+            {post.tags.map((t) => (
+              <li class="rounded-full bg-primary-tint px-3 py-1 text-sm text-[#5b21b6]">{t}</li>
+            ))}
+          </ul>
+        )
+      }
+    </article>
+  </Section>
+
+  <Cta title="Quer aplicar isso no seu site?" action={{ label: 'Chamar no WhatsApp', whatsapp: '' }} />
+</PageLayout>

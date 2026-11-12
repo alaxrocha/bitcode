@@ -10,4 +10,121 @@ seoTitle: Criação de Sites Profissionais
 seoDescription: >-
   Criação de sites profissionais, rápidos e otimizados para o Google. Layout
   exclusivo, painel para editar e atendimento em todo o Brasil.
-blocks: []
+blocks:
+  - discriminant: hero
+    value:
+      eyebrow: ''
+      title: 'Criação de sites profissionais, rápidos e '
+      highlight: prontos para o Google
+      text: >-
+        Seu site sob medida, do layout à publicação, com um painel para você
+        atualizar quando quiser.
+      primary:
+        label: Quero um orçamento
+        kind: whatsapp
+        value: ''
+      secondary:
+        label: Ver sites que criamos
+        kind: link
+        value: /portfolio
+      visual: mockup
+  - discriminant: pains
+    value:
+      title: Seu site atual está fazendo você perder clientes?
+      tone: white
+      items:
+        - title: Demora para carregar
+          text: Mais da metade dos visitantes desiste de um site lento no celular.
+        - title: Quebra no celular
+          text: >-
+            A maioria dos acessos vem do smartphone. Se o site não funciona bem
+            lá, não funciona.
+        - title: Não aparece no Google
+          text: >-
+            Sem uma boa base técnica, seu site fica invisível para quem procura
+            seus serviços.
+  - discriminant: checklist
+    value:
+      title: Tudo o que seu site precisa, já incluso
+      tone: light
+      items:
+        - Layout exclusivo, criado para a sua marca
+        - '100% responsivo: celular, tablet e computador'
+        - SEO técnico inicial (estrutura, metatags, sitemap, velocidade)
+        - Painel para editar textos, imagens e blog
+        - Botão de WhatsApp e formulário de contato
+        - Certificado SSL e hospedagem rápida
+        - Google Analytics e Search Console configurados
+        - Adequação à LGPD (política de privacidade e consentimento)
+  - discriminant: chips
+    value:
+      title: Ideal para
+      text: ''
+      tone: white
+      items:
+        - label: Empresas
+          href: /contato
+        - label: Profissionais liberais
+          href: /contato
+        - label: Clínicas e consultórios
+          href: /solucoes/site-para-clinicas
+        - label: Escritórios de advocacia
+          href: /solucoes/site-para-advogados
+        - label: Comércio e serviços
+          href: /solucoes/site-para-prestadores-de-servico
+  - discriminant: steps
+    value:
+      eyebrow: como trabalhamos
+      title: Do primeiro contato ao site no ar
+      text: ''
+      tone: light
+      items:
+        - title: Conversa
+          text: Entendemos seu negócio, seu público e o que você precisa alcançar.
+        - title: Proposta
+          text: Você recebe escopo, prazo e investimento claros, sem letras miúdas.
+        - title: Criação
+          text: Desenhamos e desenvolvemos o projeto, com rodadas de revisão.
+        - title: No ar
+          text: Publicamos, configuramos o SEO inicial e seguimos dando suporte.
+  - discriminant: portfolio
+    value:
+      eyebrow: portfólio
+      title: Sites que já criamos
+      text: ''
+      tone: white
+      only: all
+      category: site
+      limit: 3
+      more:
+        label: Ver portfólio completo
+        kind: link
+        value: /portfolio
+  - discriminant: faq
+    value:
+      title: Perguntas frequentes
+      tone: light
+      items:
+        - question: Quantas páginas meu site pode ter?
+          answer: >-
+            Quantas o seu negócio precisar. Um site institucional costuma ter
+            entre 4 e 8 páginas (início, sobre, serviços, contato e blog), mas
+            definimos isso juntos na proposta.
+        - question: Posso usar o domínio que já tenho?
+          answer: Pode, sim. Apontamos seu domínio atual para o novo site sem perder seus e-mails.
+        - question: Vocês escrevem os textos?
+          answer: >-
+            Podemos escrever ou revisar os textos para você, já pensando em SEO.
+            Se você já tiver o conteúdo, adaptamos ao layout.
+        - question: Meu site vai ser meu mesmo?
+          answer: Vai. O código e o conteúdo são seus. Nada de ficar preso a uma plataforma.
+  - discriminant: cta
+    value:
+      title: Pronto para ter um site que trabalha por você?
+      text: Conte sua ideia. A resposta vem de quem vai desenvolver.
+      tone: primary
+      action:
+        label: Chamar no WhatsApp
+        kind: whatsapp
+        value: ''
+      anchor: contato

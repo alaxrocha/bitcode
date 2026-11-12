@@ -1,0 +1,31 @@
+title: Contato
+whatsappMessage: Olá! Vim pela página de contato e quero conversar sobre um projeto.
+seoTitle: Contato | Fale com a bitCode
+seoDescription: >-
+  Fale com a bitCode pelo WhatsApp ou formulário. Orçamentos para criação de
+  sites, landing pages e SEO em todo o Brasil.
+blocks:
+  - discriminant: hero
+    value:
+      eyebrow: ''
+      title: 'Vamos '
+      highlight: conversar?
+      text: >-
+        O jeito mais rápido é pelo WhatsApp. Respondemos em horário comercial, de
+        segunda a sexta, e quem responde é quem vai desenvolver o seu projeto.
+      primary:
+        label: Chamar no WhatsApp
+        kind: whatsapp
+        value: ''
+      secondary:
+        label: ''
+        kind: link
+        value: ''
+      visual: none
+  - discriminant: contactForm
+    value:
+      title: Prefere escrever?
+      text: >-
+        Preencha o formulário e retornamos em até 1 dia útil, pelo canal que você
+        preferir.
+      tone: white

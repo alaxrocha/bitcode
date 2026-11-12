@@ -10,7 +10,9 @@ export interface SeoProps {
 }
 
 export function buildTitle(title?: string): string {
-  return title ? site.titleTemplate.replace('%s', title) : site.homeTitle;
+  if (!title) return site.homeTitle;
+  // Título que já traz o nome do site não recebe o sufixo de novo.
+  return title.includes(site.name) ? title : site.titleTemplate.replace('%s', title);
 }
 
 export function absoluteUrl(path: string, base: URL | string = site.url): string {

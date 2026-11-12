@@ -1,0 +1,48 @@
+---
+/** Modelo de página de serviço e de solução por nicho. */
+import PageLayout from '../layouts/PageLayout.astro';
+import BlockRenderer from '../components/blocks/BlockRenderer.astro';
+import Hero from '../components/blocks/Hero.astro';
+import Cta from '../components/blocks/Cta.astro';
+import { breadcrumbSchema, serviceSchema, type Crumb } from '../lib/schema';
+
+interface Props {
+  entry: {
+    title: string;
+    summary: string;
+    whatsappMessage: string;
+    seoTitle: string;
+    seoDescription: string;
+    blocks: readonly { discriminant: string; value: any }[];
+  };
+  section: { label: string; href?: string };
+}
+
+const { entry, section } = Astro.props;
+const path = Astro.url.pathname;
+const crumbs: Crumb[] = [{ label: 'Início', href: '/' }, section, { label: entry.title }];
+const description = entry.seoDescription || entry.summary;
+const message = entry.whatsappMessage || undefined;
+---
+
+<PageLayout title={entry.seoTitle || entry.title} description={description} whatsappMessage={message}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(serviceSchema(entry.title, description, path))} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema(crumbs, path))} />
+
+  {
+    entry.blocks.length > 0 ? (
+      <BlockRenderer blocks={entry.blocks} breadcrumb={crumbs} whatsappMessage={message} />
+    ) : (
+      <>
+        <Hero
+          title={entry.title}
+          text={entry.summary}
+          visual="none"
+          breadcrumb={crumbs}
+          primary={{ label: 'Quero um orçamento', whatsapp: entry.whatsappMessage }}
+        />
+        <Cta title="Vamos conversar sobre o seu projeto?" action={{ label: 'Chamar no WhatsApp', whatsapp: entry.whatsappMessage }} />
+      </>
+    )
+  }
+</PageLayout>

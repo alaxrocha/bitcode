@@ -1,0 +1,130 @@
+---
+import PageLayout from '@core/layouts/PageLayout.astro';
+import Hero from '@core/components/blocks/Hero.astro';
+import Section from '@core/components/ui/Section.astro';
+import Cta from '@core/components/blocks/Cta.astro';
+import { categoryLabels, reader } from '@core/lib/content';
+import { breadcrumbSchema, type Crumb } from '@core/lib/schema';
+
+export async function getStaticPaths() {
+  const all = (await reader.collections.portfolio.all()).sort((a, b) =>
+    (b.entry.year || '').localeCompare(a.entry.year || ''),
+  );
+  return all.map((p, i) => ({
+    params: { slug: p.slug },
+    props: {
+      entry: p.entry,
+      prev: all[i - 1] ? { slug: all[i - 1].slug, name: all[i - 1].entry.client || all[i - 1].entry.title } : null,
+      next: all[i + 1] ? { slug: all[i + 1].slug, name: all[i + 1].entry.client || all[i + 1].entry.title } : null,
+    },
+  }));
+}
+
+const { entry, prev, next } = Astro.props;
+const name = entry.client || entry.title;
+const category = categoryLabels[entry.category] ?? entry.category;
+const crumbs: Crumb[] = [{ label: 'Início', href: '/' }, { label: 'Portfólio', href: '/portfolio' }, { label: name }];
+const story = [
+  { label: 'Desafio', text: entry.challenge },
+  { label: 'Solução', text: entry.solution },
+  { label: 'Resultado', text: entry.result },
+].filter((s) => s.text.trim());
+const description = story[0]?.text.slice(0, 155) || `${category} desenvolvido pela bitCode.`;
+---
+
+<PageLayout title={`${name}: ${category}`} description={description} image={entry.cover || undefined}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema(crumbs, Astro.url.pathname))} />
+
+  <Hero eyebrow={`${category}${entry.year ? ` · ${entry.year}` : ''}`} title={name} visual="none" breadcrumb={crumbs} />
+
+  <Section>
+    {
+      entry.cover ? (
+        <img src={entry.cover} alt={`Projeto ${name}`} class="w-full rounded-[var(--radius-card)] border border-line" />
+      ) : (
+        <div class="flex aspect-[16/9] items-center justify-center rounded-[var(--radius-card)] border-2 border-dashed border-[#d6ccf5] bg-light font-mono text-sm text-[#6e6787]">
+          [ imagem do projeto ]
+        </div>
+      )
+    }
+
+    <div class="mt-14 grid gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+      <div class="flex flex-col gap-10">
+        {
+          story.map((s) => (
+            <div>
+              <p class="eyebrow">// {s.label.toLowerCase()}</p>
+              <p class="mt-3 text-lg leading-relaxed whitespace-pre-line">{s.text}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <aside class="h-fit rounded-[var(--radius-card)] bg-light p-7">
+        <dl class="flex flex-col gap-5 text-[15px]">
+          <div>
+            <dt class="text-muted">Cliente</dt>
+            <dd class="mt-1 font-semibold">{name}</dd>
+          </div>
+          <div>
+            <dt class="text-muted">Categoria</dt>
+            <dd class="mt-1 font-semibold">{category}</dd>
+          </div>
+          {
+            entry.year && (
+              <div>
+                <dt class="text-muted">Ano</dt>
+                <dd class="mt-1 font-semibold">{entry.year}</dd>
+              </div>
+            )
+          }
+          {
+            entry.technologies.length > 0 && (
+              <div>
+                <dt class="text-muted">Tecnologias</dt>
+                <dd class="mt-2 flex flex-wrap gap-2">
+                  {entry.technologies.map((t) => (
+                    <span class="rounded-md bg-white px-2.5 py-1 text-sm">{t}</span>
+                  ))}
+                </dd>
+              </div>
+            )
+          }
+          {
+            entry.thunderweb && (
+              <div>
+                <span class="rounded-md bg-primary-tint px-2 py-0.5 text-xs font-medium text-[#5b21b6]">Projeto Thunderweb</span>
+              </div>
+            )
+          }
+        </dl>
+        {
+          entry.link && (
+            <a href={entry.link} target="_blank" rel="noopener" class="mt-6 inline-flex font-semibold text-primary">
+              Ver site no ar ↗
+            </a>
+          )
+        }
+      </aside>
+    </div>
+
+    {
+      entry.gallery.filter(Boolean).length > 0 && (
+        <ul class="mt-14 grid gap-6 sm:grid-cols-2">
+          {entry.gallery.filter(Boolean).map((img) => (
+            <li>
+              <img src={img!} alt={`Tela do projeto ${name}`} loading="lazy" class="w-full rounded-[var(--radius-card)] border border-line" />
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <nav aria-label="Outros projetos" class="mt-16 flex flex-wrap justify-between gap-4 border-t border-line pt-8 text-[15px]">
+      {prev ? <a href={`/portfolio/${prev.slug}`} class="font-medium">← {prev.name}</a> : <span />}
+      {next ? <a href={`/portfolio/${next.slug}`} class="font-medium">{next.name} →</a> : <span />}
+    </nav>
+  </Section>
+
+  <Cta title="Quer um projeto assim?" text="Conte sua ideia. A resposta vem de quem vai desenvolver." action={{ label: 'Chamar no WhatsApp', whatsapp: '' }} />
+</PageLayout>

@@ -1,0 +1,41 @@
+---
+import Section from '../ui/Section.astro';
+import ActionButton from '../ui/ActionButton.astro';
+import { md } from '@core/lib/markdown';
+import type { Action, Tone } from '@core/lib/types';
+
+interface Props {
+  tone?: Extract<Tone, 'white' | 'light'>;
+  eyebrow?: string;
+  title: string;
+  body: string;
+  image?: string;
+  imageAlt?: string;
+  imageSide?: 'left' | 'right';
+  action?: Action;
+}
+
+const { tone = 'white', eyebrow, title, body, image, imageAlt = '', imageSide = 'left', action } = Astro.props;
+---
+
+<Section tone={tone}>
+  <div class="grid items-center gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16">
+    <div class:list={[imageSide === 'right' && 'md:order-2']}>
+      {
+        image ? (
+          <img src={image} alt={imageAlt} loading="lazy" class="aspect-[4/5] w-full rounded-[var(--radius-card)] object-cover" />
+        ) : (
+          <div class="flex aspect-[4/5] w-full items-center justify-center rounded-[var(--radius-card)] border-2 border-dashed border-[#d6ccf5] bg-light font-mono text-sm text-[#6e6787]">
+            [ imagem ]
+          </div>
+        )
+      }
+    </div>
+    <div>
+      {eyebrow && <p class="eyebrow">// {eyebrow}</p>}
+      <h2 class:list={['text-3xl font-semibold sm:text-4xl', eyebrow && 'mt-3']}>{title}</h2>
+      <div class="prose-bit mt-6" set:html={md(body)} />
+      {action && <ActionButton action={action} class="mt-8" />}
+    </div>
+  </div>
+</Section>

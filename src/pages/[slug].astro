@@ -1,0 +1,21 @@
+---
+/** Páginas livres montadas com blocos (Sobre, Contato, Privacidade...). */
+import PageLayout from '@core/layouts/PageLayout.astro';
+import BlockRenderer from '@core/components/blocks/BlockRenderer.astro';
+import { reader } from '@core/lib/content';
+import { breadcrumbSchema, type Crumb } from '@core/lib/schema';
+
+export async function getStaticPaths() {
+  const pages = await reader.collections.pages.all();
+  return pages.map((p) => ({ params: { slug: p.slug }, props: { entry: p.entry } }));
+}
+
+const { entry } = Astro.props;
+const crumbs: Crumb[] = [{ label: 'Início', href: '/' }, { label: entry.title }];
+const message = entry.whatsappMessage || undefined;
+---
+
+<PageLayout title={entry.seoTitle || entry.title} description={entry.seoDescription || undefined} whatsappMessage={message}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema(crumbs, Astro.url.pathname))} />
+  <BlockRenderer blocks={entry.blocks} breadcrumb={crumbs} whatsappMessage={message} />
+</PageLayout>

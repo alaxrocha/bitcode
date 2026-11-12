@@ -1,0 +1,128 @@
+---
+/**
+ * Formulário de contato + atalho para o WhatsApp.
+ * Envia para /api/contato (endpoint e anti-spam entram na Fase 5).
+ */
+import Section from '../ui/Section.astro';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import { site } from '@core/lib/settings';
+import { whatsappUrl } from '@core/lib/whatsapp';
+import type { Tone } from '@core/lib/types';
+
+interface Props {
+  tone?: Extract<Tone, 'white' | 'light'>;
+  title: string;
+  text?: string;
+  whatsappMessage?: string;
+}
+
+const { tone = 'white', title, text, whatsappMessage } = Astro.props;
+
+const services = ['Criação de site', 'Landing page', 'SEO', 'E-commerce', 'Sistema sob medida', 'Outro'];
+const field =
+  'mt-2 block w-full rounded-[var(--radius-btn)] border border-[#d6ccf5] bg-white px-4 py-3 text-base text-ink placeholder:text-[#8a83a3] focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20';
+---
+
+<Section tone={tone}>
+  <div class="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
+    <div>
+      <h2 class="text-3xl font-semibold sm:text-4xl">{title}</h2>
+      {text && <p class="mt-4 text-lg leading-relaxed text-muted">{text}</p>}
+      <Button href={whatsappUrl(whatsappMessage)} icon="whatsapp" size="lg" external class="mt-8">Chamar no WhatsApp</Button>
+      <ul class="mt-10 flex flex-col gap-4 text-muted">
+        {
+          site.email && (
+            <li class="flex items-center gap-3">
+              <Icon name="mail" class="text-primary" />
+              <a href={`mailto:${site.email}`} class="text-ink hover:text-primary">{site.email}</a>
+            </li>
+          )
+        }
+        {
+          site.serviceArea && (
+            <li class="flex items-center gap-3">
+              <Icon name="map-pin" class="text-primary" />
+              {site.serviceArea}
+            </li>
+          )
+        }
+      </ul>
+    </div>
+
+    <form
+      method="post"
+      action="/api/contato"
+      class="rounded-[var(--radius-card)] border border-line bg-light p-6 sm:p-8"
+      data-contact-form
+    >
+      <div class="grid gap-5 sm:grid-cols-2">
+        <label class="block text-[15px] font-medium">
+          Nome
+          <input name="nome" required autocomplete="name" class={field} />
+        </label>
+        <label class="block text-[15px] font-medium">
+          WhatsApp
+          <input name="whatsapp" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(11) 99999-9999" class={field} />
+        </label>
+        <label class="block text-[15px] font-medium sm:col-span-2">
+          E-mail
+          <input name="email" type="email" required autocomplete="email" placeholder="voce@empresa.com.br" class={field} />
+        </label>
+        <label class="block text-[15px] font-medium sm:col-span-2">
+          Serviço de interesse
+          <select name="servico" class={field}>
+            {services.map((s) => <option>{s}</option>)}
+          </select>
+        </label>
+        <label class="block text-[15px] font-medium sm:col-span-2">
+          Conte sobre seu projeto
+          <textarea
+            name="mensagem"
+            rows="5"
+            required
+            placeholder="Tenho uma clínica e quero um site para receber agendamentos pelo WhatsApp"
+            class={field}></textarea>
+        </label>
+        <!-- armadilha para robôs: humanos não veem este campo -->
+        <input type="text" name="site" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+        <label class="flex items-start gap-3 text-[15px] text-muted sm:col-span-2">
+          <input type="checkbox" name="lgpd" required class="mt-1 size-4 accent-primary" />
+          <span>Li e aceito a <a href="/privacidade" class="text-primary underline">Política de Privacidade</a>.</span>
+        </label>
+      </div>
+      <button
+        type="submit"
+        class="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-[var(--radius-btn)] bg-primary px-6 font-semibold text-white transition hover:bg-primary-hover disabled:opacity-60 sm:w-auto"
+      >
+        Enviar mensagem
+      </button>
+      <p class="mt-4 hidden text-[15px]" role="status" data-form-status></p>
+    </form>
+  </div>
+</Section>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
+    const status = form.querySelector<HTMLElement>('[data-form-status]')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+    const show = (msg: string, ok: boolean) => {
+      status.textContent = msg;
+      status.className = `mt-4 text-[15px] ${ok ? 'text-[#15803d]' : 'text-[#b91c1c]'}`;
+    };
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      button.disabled = true;
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        show('Mensagem recebida! Respondemos em até 1 dia útil.', true);
+      } catch {
+        show('Não foi possível enviar agora. Tente novamente ou chame a gente no WhatsApp.', false);
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+</script>

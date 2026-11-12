@@ -1,0 +1,34 @@
+---
+import Section from '../ui/Section.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import type { Tone } from '@core/lib/types';
+
+interface Props {
+  tone?: Extract<Tone, 'white' | 'light' | 'dark'>;
+  eyebrow?: string;
+  title: string;
+  items: { year: string; title: string; text?: string }[];
+}
+
+const { tone = 'dark', eyebrow, title, items } = Astro.props;
+const inverted = tone === 'dark';
+---
+
+<Section tone={tone}>
+  <SectionHeading eyebrow={eyebrow} title={title} inverted={inverted} />
+  <ol class:list={['mt-12 border-l-2', inverted ? 'border-white/15' : 'border-line']}>
+    {
+      items.map((it, i) => (
+        <li class="relative pb-10 pl-8 last:pb-0">
+          <span
+            class:list={['absolute top-1.5 -left-[7px] size-3', i === items.length - 1 ? 'bg-accent' : 'bg-primary']}
+            aria-hidden="true"
+          />
+          <p class:list={['font-mono text-sm', inverted ? 'text-accent' : 'text-primary']}>{it.year}</p>
+          <h3 class="mt-1 text-xl font-semibold">{it.title}</h3>
+          {it.text && <p class:list={['mt-2 max-w-2xl leading-relaxed', inverted ? 'text-muted-dark' : 'text-muted']}>{it.text}</p>}
+        </li>
+      ))
+    }
+  </ol>
+</Section>

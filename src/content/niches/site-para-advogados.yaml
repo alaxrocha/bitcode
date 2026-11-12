@@ -1,0 +1,96 @@
+title: Site para advogados
+active: true
+order: 1
+icon: ''
+summary: >-
+  Presença digital profissional para advogados e escritórios, dentro das regras
+  da OAB.
+whatsappMessage: Olá! Tenho um escritório de advocacia e quero um site.
+seoTitle: Criação de Site para Advogados e Escritórios
+seoDescription: >-
+  Sites para advogados e escritórios de advocacia, profissionais, rápidos e de
+  acordo com o Código de Ética da OAB. Atendemos todo o Brasil.
+blocks:
+  - discriminant: hero
+    value:
+      eyebrow: // advocacia
+      title: 'Sites para advogados e '
+      highlight: escritórios de advocacia
+      text: >-
+        Presença digital profissional, que transmite confiança e respeita as
+        regras da OAB.
+      primary:
+        label: Quero um orçamento
+        kind: whatsapp
+        value: ''
+      secondary:
+        label: Ver portfólio
+        kind: link
+        value: /portfolio
+      visual: mockup
+  - discriminant: pains
+    value:
+      title: Seu cliente pesquisa antes de contratar
+      tone: white
+      items:
+        - title: Primeira impressão
+          text: >-
+            Clientes pesquisam no Google antes de contratar um advogado. Um site
+            amador passa insegurança.
+        - title: Sem site, sem confiança
+          text: Não ter site faz seu escritório parecer menor do que é.
+        - title: Regras da OAB
+          text: >-
+            Publicidade jurídica tem limites. Um site mal feito pode gerar
+            problemas éticos.
+  - discriminant: checklist
+    value:
+      title: O que o seu site terá
+      tone: light
+      items:
+        - Apresentação das áreas de atuação
+        - Perfil dos advogados do escritório
+        - Blog jurídico para atrair clientes pelo Google
+        - Botão de WhatsApp e formulário de contato
+        - Conteúdo dentro do Provimento 205/2021 da OAB
+        - Layout sóbrio, rápido e responsivo
+  - discriminant: steps
+    value:
+      eyebrow: como trabalhamos
+      title: Do primeiro contato ao site no ar
+      text: ''
+      tone: white
+      items:
+        - title: Conversa
+          text: Entendemos seu negócio, seu público e o que você precisa alcançar.
+        - title: Proposta
+          text: Você recebe escopo, prazo e investimento claros, sem letras miúdas.
+        - title: Criação
+          text: Desenhamos e desenvolvemos o projeto, com rodadas de revisão.
+        - title: No ar
+          text: Publicamos, configuramos o SEO inicial e seguimos dando suporte.
+  - discriminant: faq
+    value:
+      title: Perguntas frequentes
+      tone: light
+      items:
+        - question: O site respeita as normas de publicidade da OAB?
+          answer: >-
+            Sim. Seguimos o Provimento 205/2021: conteúdo informativo, sem
+            promessa de resultado e sem captação indevida de clientela.
+        - question: Posso publicar artigos no site?
+          answer: >-
+            Pode e deve. Um blog jurídico informativo é uma das melhores formas
+            de aparecer no Google.
+        - question: Vocês atendem escritórios de qualquer cidade?
+          answer: Sim, atendemos em todo o Brasil, com todo o processo online.
+  - discriminant: cta
+    value:
+      title: Seu escritório merece uma presença digital à altura
+      text: Conte sua ideia. A resposta vem de quem vai desenvolver.
+      tone: primary
+      action:
+        label: Chamar no WhatsApp
+        kind: whatsapp
+        value: ''
+      anchor: contato

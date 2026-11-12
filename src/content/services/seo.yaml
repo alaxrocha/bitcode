@@ -10,4 +10,120 @@ seoTitle: SEO e Otimização de Sites para o Google
 seoDescription: >-
   Consultoria de SEO para seu site aparecer no Google. Auditoria técnica,
   palavras-chave, otimização de conteúdo e relatórios mensais.
-blocks: []
+blocks:
+  - discriminant: hero
+    value:
+      eyebrow: ''
+      title: 'SEO para seu site ser encontrado no '
+      highlight: Google
+      text: >-
+        Colocamos seu site na frente de quem já está procurando o que você
+        vende, com estratégia, técnica e acompanhamento mensal.
+      primary:
+        label: Quero aparecer no Google
+        kind: whatsapp
+        value: ''
+      secondary:
+        label: ''
+        kind: link
+        value: ''
+      visual: mockup
+  - discriminant: pains
+    value:
+      title: Se você não está no Google, seu concorrente está
+      tone: white
+      items:
+        - title: Invisível nas buscas
+          text: Seus clientes procuram, mas encontram outra empresa.
+        - title: Dependência de anúncios
+          text: Quando o investimento para, os contatos param junto.
+        - title: Site sem estratégia
+          text: Páginas que não respondem ao que as pessoas buscam.
+  - discriminant: cardGrid
+    value:
+      eyebrow: o que entregamos
+      title: Como trabalhamos o SEO do seu site
+      text: ''
+      tone: light
+      items:
+        - icon: '01'
+          title: Auditoria técnica
+          text: Velocidade, indexação, estrutura, erros e versão mobile.
+          href: ''
+        - icon: '02'
+          title: Pesquisa de palavras-chave
+          text: Descobrimos como seu cliente procura por você.
+          href: ''
+        - icon: '03'
+          title: Otimização on-page
+          text: Títulos, textos, imagens e links internos ajustados.
+          href: ''
+        - icon: '04'
+          title: Conteúdo estratégico
+          text: Planejamento de pautas para o blog.
+          href: ''
+        - icon: '05'
+          title: Google Meu Negócio
+          text: Perfil otimizado para buscas locais, quando fizer sentido.
+          href: ''
+        - icon: '06'
+          title: Relatório mensal
+          text: Posições, visitas e próximos passos, em linguagem clara.
+          href: ''
+  - discriminant: chips
+    value:
+      title: Ideal para
+      text: ''
+      tone: white
+      items:
+        - label: Empresas que querem depender menos de anúncios
+          href: /contato
+        - label: Prestadores de serviço
+          href: /solucoes/site-para-prestadores-de-servico
+        - label: Lojas virtuais
+          href: /contato
+        - label: Profissionais liberais
+          href: /contato
+  - discriminant: steps
+    value:
+      eyebrow: como trabalhamos
+      title: Um processo contínuo, medido mês a mês
+      text: ''
+      tone: light
+      items:
+        - title: Diagnóstico
+          text: Auditoria completa do site e da concorrência.
+        - title: Estratégia
+          text: Palavras-chave e prioridades definidas.
+        - title: Execução
+          text: Otimizações técnicas e de conteúdo.
+        - title: Acompanhamento
+          text: Relatórios mensais e ajustes contínuos.
+  - discriminant: faq
+    value:
+      title: Perguntas frequentes
+      tone: white
+      items:
+        - question: Em quanto tempo vejo resultados?
+          answer: >-
+            Os primeiros sinais costumam aparecer entre 3 e 6 meses. SEO é um
+            investimento que se acumula com o tempo.
+        - question: Vocês garantem primeira posição no Google?
+          answer: >-
+            Ninguém pode garantir isso com honestidade, porque o Google não vende
+            posições orgânicas. Garantimos um trabalho técnico sério,
+            transparente e medido mês a mês.
+        - question: Meu site não foi feito por vocês. Dá para fazer SEO mesmo assim?
+          answer: >-
+            Dá. Começamos com uma auditoria e dizemos com sinceridade o que dá
+            para otimizar e o que vale a pena refazer.
+  - discriminant: cta
+    value:
+      title: Vamos colocar sua empresa no mapa do Google?
+      text: Conte sua ideia. A resposta vem de quem vai desenvolver.
+      tone: primary
+      action:
+        label: Chamar no WhatsApp
+        kind: whatsapp
+        value: ''
+      anchor: contato

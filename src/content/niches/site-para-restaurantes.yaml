@@ -1,0 +1,88 @@
+title: Site para restaurantes
+active: true
+order: 3
+icon: ''
+summary: >-
+  Sites para restaurantes, bares e delivery, com cardápio online e pedidos pelo
+  WhatsApp.
+whatsappMessage: Olá! Tenho um restaurante e quero um site.
+seoTitle: Criação de Site para Restaurantes e Delivery
+seoDescription: >-
+  Sites para restaurantes, bares e delivery com cardápio online, pedidos pelo
+  WhatsApp e presença no Google. Atendemos todo o Brasil.
+blocks:
+  - discriminant: hero
+    value:
+      eyebrow: // gastronomia
+      title: 'Sites para restaurantes, bares e '
+      highlight: delivery
+      text: >-
+        Cardápio online, pedidos pelo WhatsApp e seu restaurante bem posicionado
+        no Google.
+      primary:
+        label: Quero um orçamento
+        kind: whatsapp
+        value: ''
+      secondary:
+        label: Ver portfólio
+        kind: link
+        value: /portfolio
+      visual: mockup
+  - discriminant: pains
+    value:
+      title: Seu cliente decide onde comer pelo celular
+      tone: white
+      items:
+        - title: Cardápio em PDF
+          text: Difícil de ler no celular e impossível de achar no Google.
+        - title: Refém dos aplicativos
+          text: Taxas altas dos apps de delivery corroem sua margem.
+        - title: Fotos que não dão fome
+          text: Uma apresentação ruim faz o cliente escolher o vizinho.
+  - discriminant: checklist
+    value:
+      title: O que o seu site terá
+      tone: light
+      items:
+        - Cardápio online fácil de atualizar
+        - Pedidos e reservas pelo WhatsApp
+        - Galeria de fotos dos pratos e do ambiente
+        - Horários, localização e mapa
+        - Integração com Google Meu Negócio
+        - Layout rápido, pensado para o celular
+  - discriminant: steps
+    value:
+      eyebrow: como trabalhamos
+      title: Do primeiro contato ao site no ar
+      text: ''
+      tone: white
+      items:
+        - title: Conversa
+          text: Entendemos seu negócio, seu público e o que você precisa alcançar.
+        - title: Proposta
+          text: Você recebe escopo, prazo e investimento claros, sem letras miúdas.
+        - title: Criação
+          text: Desenhamos e desenvolvemos o projeto, com rodadas de revisão.
+        - title: No ar
+          text: Publicamos, configuramos o SEO inicial e seguimos dando suporte.
+  - discriminant: faq
+    value:
+      title: Perguntas frequentes
+      tone: light
+      items:
+        - question: Consigo mudar o cardápio sozinho?
+          answer: Sim. Você troca pratos, preços e fotos pelo painel em minutos.
+        - question: Dá para receber pedidos sem pagar taxa de aplicativo?
+          answer: Sim. Os pedidos chegam direto no seu WhatsApp, sem comissão.
+        - question: Vocês atendem fora da minha cidade?
+          answer: Sim, atendemos em todo o Brasil, com todo o processo online.
+  - discriminant: cta
+    value:
+      title: Vamos encher as mesas do seu restaurante?
+      text: Conte sua ideia. A resposta vem de quem vai desenvolver.
+      tone: primary
+      action:
+        label: Chamar no WhatsApp
+        kind: whatsapp
+        value: ''
+      anchor: contato

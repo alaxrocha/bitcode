@@ -15,6 +15,10 @@ import Faq from './Faq.astro';
 import Cta from './Cta.astro';
 import Pains from './Pains.astro';
 import Checklist from './Checklist.astro';
+import RichText from './RichText.astro';
+import ImageText from './ImageText.astro';
+import Timeline from './Timeline.astro';
+import ContactForm from './ContactForm.astro';
 import { getPortfolio, getServices, getTestimonials, toAction } from '@core/lib/content';
 import type { CardItem } from '@core/lib/types';
 
@@ -23,9 +27,20 @@ type Block = { discriminant: string; value: any };
 
 interface Props {
   blocks: readonly Block[];
+  /** Trilha de navegação exibida no primeiro bloco "Topo" */
+  breadcrumb?: { label: string; href?: string }[];
+  /** Mensagem do WhatsApp usada pelo formulário de contato */
+  whatsappMessage?: string;
 }
 
-const { blocks } = Astro.props;
+const { blocks, breadcrumb, whatsappMessage } = Astro.props;
+const firstHero = blocks.findIndex((b) => b.discriminant === 'hero');
+// Botão de WhatsApp sem mensagem própria usa a mensagem da página.
+const act = (a: any) => {
+  const r = toAction(a);
+  if (r && r.whatsapp === '' && whatsappMessage) r.whatsapp = whatsappMessage;
+  return r;
+};
 const opt = (s?: string | null) => (s && s.trim() ? s : undefined);
 
 // Só o primeiro bloco de FAQ gera dados estruturados FAQPage.
@@ -70,9 +85,10 @@ const rendered = await Promise.all(
             title={v.title}
             highlight={opt(v.highlight)}
             text={opt(v.text)}
-            primary={toAction(v.primary)}
-            secondary={toAction(v.secondary)}
+            primary={act(v.primary)}
+            secondary={act(v.secondary)}
             visual={v.visual}
+            breadcrumb={i === firstHero ? breadcrumb : undefined}
           />
         );
       case 'stats':
@@ -109,7 +125,7 @@ const rendered = await Promise.all(
             title={v.title}
             text={opt(v.text)}
             items={b.items as any}
-            more={toAction(v.more)}
+            more={act(v.more)}
           />
         );
       case 'steps':
@@ -126,8 +142,27 @@ const rendered = await Promise.all(
         return <Pains tone={v.tone} title={v.title} items={v.items} />;
       case 'checklist':
         return <Checklist tone={v.tone} title={v.title} items={v.items} />;
+      case 'richText':
+        return <RichText tone={v.tone} eyebrow={opt(v.eyebrow)} title={opt(v.title)} body={v.body} />;
+      case 'imageText':
+        return (
+          <ImageText
+            tone={v.tone}
+            eyebrow={opt(v.eyebrow)}
+            title={v.title}
+            body={v.body}
+            image={v.image || undefined}
+            imageAlt={v.imageAlt}
+            imageSide={v.imageSide}
+            action={act(v.action)}
+          />
+        );
+      case 'timeline':
+        return <Timeline tone={v.tone} eyebrow={opt(v.eyebrow)} title={v.title} items={v.items} />;
+      case 'contactForm':
+        return <ContactForm tone={v.tone} title={v.title} text={opt(v.text)} whatsappMessage={whatsappMessage} />;
       case 'cta': {
-        const action = toAction(v.action);
+        const action = act(v.action);
         return action ? <Cta id={opt(v.anchor)} tone={v.tone} title={v.title} text={opt(v.text)} action={action} /> : null;
       }
       default:

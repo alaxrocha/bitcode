@@ -1,0 +1,13 @@
+---
+import ServicePage from '@core/templates/ServicePage.astro';
+import { getServices } from '@core/lib/content';
+
+export async function getStaticPaths() {
+  const services = await getServices();
+  return services.map((s) => ({ params: { slug: s.slug }, props: { entry: s.entry } }));
+}
+
+const { entry } = Astro.props;
+---
+
+<ServicePage entry={entry} section={{ label: 'Serviços', href: '/#servicos' }} />

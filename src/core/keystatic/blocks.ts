@@ -207,6 +207,71 @@ export const pageBlocks = fields.blocks(
       }),
     },
 
+    richText: {
+      label: 'Texto',
+      itemLabel: (p) => `Texto: ${p.fields.title.value || p.fields.body.value.slice(0, 40) || '…'}`,
+      schema: fields.object({
+        eyebrow: heading.eyebrow,
+        title: fields.text({ label: 'Título (opcional)' }),
+        tone: lightToneField(),
+        body: fields.text({
+          label: 'Texto',
+          description: 'Markdown: ## subtítulo, **negrito**, - lista, [link](/endereco)',
+          multiline: true,
+        }),
+      }),
+    },
+
+    imageText: {
+      label: 'Imagem + texto',
+      itemLabel: (p) => `Imagem + texto: ${p.fields.title.value || '…'}`,
+      schema: fields.object({
+        eyebrow: heading.eyebrow,
+        title: fields.text({ label: 'Título' }),
+        tone: lightToneField(),
+        body: fields.text({ label: 'Texto (Markdown)', multiline: true }),
+        image: fields.image({ label: 'Imagem', directory: 'public/images/pages', publicPath: '/images/pages/' }),
+        imageAlt: fields.text({ label: 'Descrição da imagem (acessibilidade)' }),
+        imageSide: fields.select({
+          label: 'Lado da imagem',
+          options: [
+            { label: 'Esquerda', value: 'left' },
+            { label: 'Direita', value: 'right' },
+          ],
+          defaultValue: 'left',
+        }),
+        action: actionField('Botão (opcional)'),
+      }),
+    },
+
+    timeline: {
+      label: 'Linha do tempo',
+      itemLabel: (p) => `Linha do tempo: ${p.fields.title.value || '…'}`,
+      schema: fields.object({
+        eyebrow: heading.eyebrow,
+        title: fields.text({ label: 'Título' }),
+        tone: toneField('dark'),
+        items: fields.array(
+          fields.object({
+            year: fields.text({ label: 'Ano / período' }),
+            title: fields.text({ label: 'Título' }),
+            text: fields.text({ label: 'Texto', multiline: true }),
+          }),
+          { label: 'Marcos', itemLabel: (p) => `${p.fields.year.value} ${p.fields.title.value}`.trim() || 'Marco' },
+        ),
+      }),
+    },
+
+    contactForm: {
+      label: 'Formulário de contato',
+      itemLabel: (p) => `Formulário: ${p.fields.title.value || '…'}`,
+      schema: fields.object({
+        title: fields.text({ label: 'Título' }),
+        text: fields.text({ label: 'Texto', multiline: true }),
+        tone: lightToneField(),
+      }),
+    },
+
     cta: {
       label: 'Chamada final',
       itemLabel: (p) => `Chamada: ${p.fields.title.value || '…'}`,

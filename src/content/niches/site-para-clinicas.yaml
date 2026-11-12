@@ -1,0 +1,96 @@
+title: Site para clínicas e consultórios
+active: true
+order: 2
+icon: ''
+summary: >-
+  Sites para clínicas, consultórios e profissionais de saúde, com agendamento
+  pelo WhatsApp.
+whatsappMessage: Olá! Tenho uma clínica/consultório e quero um site.
+seoTitle: Criação de Site para Clínicas e Consultórios
+seoDescription: >-
+  Sites para clínicas, consultórios e profissionais de saúde: rápidos,
+  confiáveis e com agendamento pelo WhatsApp. Atendemos todo o Brasil.
+blocks:
+  - discriminant: hero
+    value:
+      eyebrow: // saúde
+      title: 'Sites para clínicas e '
+      highlight: consultórios
+      text: >-
+        Transmita confiança desde o primeiro clique e facilite o agendamento dos
+        seus pacientes.
+      primary:
+        label: Quero um orçamento
+        kind: whatsapp
+        value: ''
+      secondary:
+        label: Ver portfólio
+        kind: link
+        value: /portfolio
+      visual: mockup
+  - discriminant: pains
+    value:
+      title: Pacientes escolhem pelo que encontram na internet
+      tone: white
+      items:
+        - title: Pouca confiança
+          text: >-
+            Um site desatualizado faz o paciente duvidar da qualidade do
+            atendimento.
+        - title: Agendamento difícil
+          text: >-
+            Se marcar consulta é complicado, o paciente agenda com outro
+            profissional.
+        - title: Invisível na região
+          text: Quem busca "clínica perto de mim" não encontra você.
+  - discriminant: checklist
+    value:
+      title: O que o seu site terá
+      tone: light
+      items:
+        - Apresentação de especialidades e profissionais
+        - Agendamento rápido pelo WhatsApp
+        - Página de convênios e localização com mapa
+        - Blog com conteúdo de saúde para o Google
+        - Conteúdo dentro das normas do seu conselho profissional
+        - Adequação à LGPD
+  - discriminant: steps
+    value:
+      eyebrow: como trabalhamos
+      title: Do primeiro contato ao site no ar
+      text: ''
+      tone: white
+      items:
+        - title: Conversa
+          text: Entendemos seu negócio, seu público e o que você precisa alcançar.
+        - title: Proposta
+          text: Você recebe escopo, prazo e investimento claros, sem letras miúdas.
+        - title: Criação
+          text: Desenhamos e desenvolvemos o projeto, com rodadas de revisão.
+        - title: No ar
+          text: Publicamos, configuramos o SEO inicial e seguimos dando suporte.
+  - discriminant: faq
+    value:
+      title: Perguntas frequentes
+      tone: light
+      items:
+        - question: O site segue as regras do conselho de classe?
+          answer: >-
+            Sim. Cuidamos para que o conteúdo siga as normas de publicidade do
+            seu conselho (CFM, CRO, CFP e outros).
+        - question: Dá para integrar com meu sistema de agendamento?
+          answer: >-
+            Na maioria dos casos, sim. Avaliamos o seu sistema na conversa
+            inicial.
+        - question: Vocês atendem fora da minha cidade?
+          answer: Sim, atendemos em todo o Brasil, com todo o processo online.
+  - discriminant: cta
+    value:
+      title: Vamos trazer mais pacientes para a sua clínica?
+      text: Conte sua ideia. A resposta vem de quem vai desenvolver.
+      tone: primary
+      action:
+        label: Chamar no WhatsApp
+        kind: whatsapp
+        value: ''
+      anchor: contato

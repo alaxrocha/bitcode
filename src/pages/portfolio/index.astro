@@ -1,0 +1,120 @@
+---
+import PageLayout from '@core/layouts/PageLayout.astro';
+import Hero from '@core/components/blocks/Hero.astro';
+import Section from '@core/components/ui/Section.astro';
+import Cta from '@core/components/blocks/Cta.astro';
+import { categoryLabels, reader } from '@core/lib/content';
+import { breadcrumbSchema, type Crumb } from '@core/lib/schema';
+
+const all = (await reader.collections.portfolio.all()).sort((a, b) =>
+  (b.entry.year || '').localeCompare(a.entry.year || ''),
+);
+const usedCategories = Object.entries(categoryLabels).filter(([key]) => all.some((p) => p.entry.category === key));
+const crumbs: Crumb[] = [{ label: 'Início', href: '/' }, { label: 'Portfólio' }];
+---
+
+<PageLayout
+  title="Portfólio"
+  description="Veja sites, landing pages, lojas virtuais e sistemas desenvolvidos pela bitCode e pela Thunderweb em mais de 20 anos de trabalho."
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema(crumbs, '/portfolio'))} />
+
+  <Hero
+    title="Projetos que já colocamos no ar"
+    text="Mais de 20 anos de trabalhos, da Thunderweb à bitCode."
+    visual="none"
+    breadcrumb={crumbs}
+  />
+
+  <Section>
+    {
+      usedCategories.length > 1 && (
+        <div class="mb-10 flex flex-wrap gap-2" role="group" aria-label="Filtrar projetos" data-filters>
+          <button type="button" data-filter="" aria-pressed="true" class="filter-btn">
+            Todos
+          </button>
+          {usedCategories.map(([key, label]) => (
+            <button type="button" data-filter={key} aria-pressed="false" class="filter-btn">
+              {label}
+            </button>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      all.length === 0 ? (
+        <p class="text-lg text-muted">Em breve, nossos projetos aparecem aqui.</p>
+      ) : (
+        <ul class="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {all.map((p) => (
+            <li data-category={p.entry.category}>
+              <a href={`/portfolio/${p.slug}`} class="group block text-ink no-underline">
+                <div class="aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] bg-light">
+                  {p.entry.cover ? (
+                    <img
+                      src={p.entry.cover}
+                      alt={`Projeto ${p.entry.client || p.entry.title}`}
+                      loading="lazy"
+                      class="size-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div class="flex size-full items-center justify-center rounded-[var(--radius-card)] border-2 border-dashed border-[#d6ccf5] font-mono text-sm text-[#6e6787]">
+                      [ imagem do projeto ]
+                    </div>
+                  )}
+                </div>
+                <div class="mt-4 flex flex-wrap items-center gap-2">
+                  <h2 class="text-lg font-semibold">{p.entry.client || p.entry.title}</h2>
+                  {p.entry.thunderweb && (
+                    <span class="rounded-md bg-primary-tint px-2 py-0.5 text-xs font-medium text-[#5b21b6]">Thunderweb</span>
+                  )}
+                </div>
+                <p class="mt-1 text-sm text-muted">
+                  {categoryLabels[p.entry.category]}
+                  {p.entry.year && ` · ${p.entry.year}`}
+                </p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </Section>
+
+  <Cta title="Que tal o seu projeto ser o próximo?" action={{ label: 'Chamar no WhatsApp', whatsapp: '' }} />
+</PageLayout>
+
+<style>
+  .filter-btn {
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1px solid #d6ccf5;
+    font-size: 15px;
+    color: var(--color-ink);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover {
+    border-color: var(--color-primary);
+  }
+  .filter-btn[aria-pressed='true'] {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+  }
+</style>
+
+<script>
+  const group = document.querySelector('[data-filters]');
+  group?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-filter]');
+    if (!btn) return;
+    const value = btn.dataset.filter;
+    group.querySelectorAll('[data-filter]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+    document.querySelectorAll<HTMLElement>('[data-category]').forEach((li) => {
+      li.hidden = !!value && li.dataset.category !== value;
+    });
+  });
+</script>

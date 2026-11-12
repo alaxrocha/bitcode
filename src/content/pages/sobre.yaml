@@ -1,0 +1,95 @@
+title: Sobre
+whatsappMessage: ''
+seoTitle: Sobre a bitCode | Mais de 20 anos de experiência em web
+seoDescription: >-
+  Conheça a bitCode, agência digital que nasce da experiência da Thunderweb.
+  Mais de 20 anos criando sites, lojas virtuais e sistemas.
+blocks:
+  - discriminant: hero
+    value:
+      eyebrow: ''
+      title: 'Mais de 20 anos transformando ideias em '
+      highlight: código
+      text: >-
+        A bitCode nasce da experiência da Thunderweb, agência que por mais de
+        duas décadas criou sites, lojas virtuais e sistemas para empresas de
+        diversos segmentos.
+      primary:
+        label: ''
+        kind: whatsapp
+        value: ''
+      secondary:
+        label: ''
+        kind: link
+        value: ''
+      visual: none
+  - discriminant: richText
+    value:
+      eyebrow: ''
+      title: ''
+      tone: white
+      body: |-
+        Passamos por todas as fases da internet: do ASP e PHP aos frameworks modernos, do WordPress às aplicações em Java e Angular. Essa bagagem nos ensinou o que realmente funciona e o que é só moda.
+
+        Hoje unimos essa experiência às tecnologias mais rápidas e seguras do mercado para entregar sites que **carregam em um piscar de olhos**, **aparecem no Google** e são **fáceis de manter**.
+  - discriminant: imageText
+    value:
+      eyebrow: quem está por trás
+      title: '[ Seu nome ]'
+      tone: light
+      body: |-
+        **Fundador e desenvolvedor**
+
+        [ 2 a 3 linhas em primeira pessoa. Exemplo: "Programo para a web desde [ano]. Já fui de tudo um pouco: designer, desenvolvedor, dono de agência. Na bitCode, cada projeto passa pelas minhas mãos, do primeiro contato à publicação." ]
+      imageAlt: '[ Seu nome ], fundador da bitCode'
+      imageSide: left
+      action:
+        label: Falar comigo no WhatsApp
+        kind: whatsapp
+        value: ''
+  - discriminant: timeline
+    value:
+      eyebrow: nossa história
+      title: Da Thunderweb à bitCode
+      tone: dark
+      items:
+        - year: '[ano]'
+          title: Fundação da Thunderweb / Thunderdesign
+          text: ''
+        - year: '[ano]'
+          title: Sites, portais e lojas virtuais em ASP e PHP
+          text: ''
+        - year: '[ano]'
+          title: WordPress, Joomla e e-commerce
+          text: ''
+        - year: '[ano]'
+          title: Sistemas corporativos em Java, Angular e PostgreSQL
+          text: ''
+        - year: '2026'
+          title: Nasce a bitCode
+          text: Sites, landing pages e SEO com a experiência de duas décadas.
+  - discriminant: features
+    value:
+      eyebrow: nossos valores
+      title: O que guia cada projeto
+      text: ''
+      tone: white
+      items:
+        - title: Transparência
+          text: Proposta clara, prazos reais e nenhuma surpresa no caminho.
+        - title: Performance
+          text: Sites rápidos não são luxo, são requisito.
+        - title: Atendimento direto
+          text: Você fala com quem faz.
+        - title: Código de verdade
+          text: Sites leves, seguros e que pertencem a você.
+  - discriminant: cta
+    value:
+      title: Que tal o seu projeto ser o próximo?
+      text: Conte sua ideia. A resposta vem de quem vai desenvolver.
+      tone: primary
+      action:
+        label: Chamar no WhatsApp
+        kind: whatsapp
+        value: ''
+      anchor: contato

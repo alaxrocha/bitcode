@@ -1,0 +1,13 @@
+---
+import ServicePage from '@core/templates/ServicePage.astro';
+import { reader } from '@core/lib/content';
+
+export async function getStaticPaths() {
+  const niches = await reader.collections.niches.all();
+  return niches.filter((n) => n.entry.active).map((n) => ({ params: { slug: n.slug }, props: { entry: n.entry } }));
+}
+
+const { entry } = Astro.props;
+---
+
+<ServicePage entry={entry} section={{ label: 'Soluções' }} />

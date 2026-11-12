@@ -39,4 +39,54 @@
   .eyebrow-dark {
     @apply font-mono text-sm text-accent;
   }
+
+  /* Texto corrido vindo do painel (Markdown / Markdoc) */
+  .prose-bit {
+    @apply text-lg leading-relaxed text-muted;
+  }
+  .prose-bit > * + * {
+    @apply mt-5;
+  }
+  .prose-bit h2 {
+    @apply mt-12 text-2xl font-semibold text-ink sm:text-3xl;
+  }
+  .prose-bit h3 {
+    @apply mt-9 text-xl font-semibold text-ink;
+  }
+  .prose-bit strong {
+    @apply font-semibold text-ink;
+  }
+  .prose-bit a {
+    @apply font-medium text-primary underline underline-offset-2;
+  }
+  .prose-bit ul {
+    @apply list-disc pl-6;
+  }
+  .prose-bit ol {
+    @apply list-decimal pl-6;
+  }
+  .prose-bit li + li {
+    @apply mt-2;
+  }
+  .prose-bit li::marker {
+    @apply text-primary;
+  }
+  .prose-bit blockquote {
+    @apply border-l-4 border-primary pl-5 text-ink italic;
+  }
+  .prose-bit code {
+    @apply rounded bg-primary-tint px-1.5 py-0.5 font-mono text-[0.9em] text-[#5b21b6];
+  }
+  .prose-bit pre {
+    @apply overflow-x-auto rounded-xl bg-dark p-5 text-sm text-muted-dark;
+  }
+  .prose-bit pre code {
+    @apply bg-transparent p-0 text-inherit;
+  }
+  .prose-bit img {
+    @apply rounded-[var(--radius-card)];
+  }
+  .prose-bit hr {
+    @apply my-10 border-line;
+  }
 }

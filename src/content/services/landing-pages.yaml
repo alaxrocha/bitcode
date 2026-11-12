@@ -10,4 +10,115 @@ seoTitle: Criação de Landing Pages que Convertem
 seoDescription: >-
   Landing pages rápidas e focadas em conversão para campanhas, lançamentos e
   anúncios no Google e Meta. Mais contatos e vendas.
-blocks: []
+blocks:
+  - discriminant: hero
+    value:
+      eyebrow: ''
+      title: 'Landing pages que transformam visitantes em '
+      highlight: clientes
+      text: >-
+        Páginas rápidas, objetivas e pensadas para converter, perfeitas para
+        anúncios, lançamentos e captação de contatos.
+      primary:
+        label: Quero minha landing page
+        kind: whatsapp
+        value: ''
+      secondary:
+        label: Ver projetos
+        kind: link
+        value: /portfolio
+      visual: mockup
+  - discriminant: pains
+    value:
+      title: Está pagando por anúncios que não viram vendas?
+      tone: white
+      items:
+        - title: Página lenta
+          text: Cada segundo a mais de carregamento derruba a conversão.
+        - title: Mensagem confusa
+          text: O visitante não entende a oferta e vai embora.
+        - title: Sem foco
+          text: Menus e links demais tiram a atenção da ação principal.
+  - discriminant: checklist
+    value:
+      title: 'Uma página feita para uma única missão: converter'
+      tone: light
+      items:
+        - Copy e estrutura pensadas para conversão
+        - Layout exclusivo e responsivo
+        - Carregamento ultrarrápido
+        - Formulário ou botão de WhatsApp integrado
+        - Pixel do Meta, Google Ads e Analytics configurados
+        - Variações para teste A/B (opcional)
+        - Integração com e-mail marketing ou CRM (opcional)
+  - discriminant: chips
+    value:
+      title: Ideal para
+      text: ''
+      tone: white
+      items:
+        - label: Lançamentos
+          href: /contato
+        - label: Infoprodutos
+          href: /solucoes/landing-page-para-infoprodutores
+        - label: Campanhas de anúncios
+          href: /contato
+        - label: Captação de leads
+          href: /contato
+        - label: Eventos e promoções
+          href: /contato
+  - discriminant: steps
+    value:
+      eyebrow: como trabalhamos
+      title: Do primeiro contato à página no ar
+      text: ''
+      tone: light
+      items:
+        - title: Conversa
+          text: Entendemos sua oferta, seu público e a meta da campanha.
+        - title: Proposta
+          text: Você recebe escopo, prazo e investimento claros, sem letras miúdas.
+        - title: Criação
+          text: Estrutura, copy, layout e desenvolvimento, com rodadas de revisão.
+        - title: No ar
+          text: Publicamos com pixels e conversões configurados, pronta para receber tráfego.
+  - discriminant: portfolio
+    value:
+      eyebrow: portfólio
+      title: Landing pages que já criamos
+      text: ''
+      tone: white
+      only: all
+      category: landing
+      limit: 3
+      more:
+        label: Ver portfólio completo
+        kind: link
+        value: /portfolio
+  - discriminant: faq
+    value:
+      title: Perguntas frequentes
+      tone: light
+      items:
+        - question: Qual a diferença entre landing page e site?
+          answer: >-
+            O site apresenta sua empresa como um todo. A landing page tem um
+            único objetivo, como capturar um contato ou vender um produto, e por
+            isso converte muito mais em campanhas.
+        - question: Vocês fazem os anúncios também?
+          answer: >-
+            Nosso foco é a página. Ela já sai pronta para receber tráfego, com
+            os pixels e as conversões configurados para sua equipe ou seu gestor
+            de tráfego.
+        - question: Posso usar no meu domínio?
+          answer: Sim, no domínio principal ou em um subdomínio, como oferta.suaempresa.com.br.
+  - discriminant: cta
+    value:
+      title: Sua próxima campanha merece uma página à altura
+      text: Conte sua ideia. A resposta vem de quem vai desenvolver.
+      tone: primary
+      action:
+        label: Chamar no WhatsApp
+        kind: whatsapp
+        value: ''
+      anchor: contato

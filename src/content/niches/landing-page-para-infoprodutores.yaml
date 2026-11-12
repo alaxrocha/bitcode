@@ -1,0 +1,92 @@
+title: Landing page para infoprodutores
+active: true
+order: 4
+icon: ''
+summary: Páginas de vendas e captura para cursos, mentorias e lançamentos digitais.
+whatsappMessage: Olá! Sou infoprodutor e quero uma landing page.
+seoTitle: Landing Page para Infoprodutores e Lançamentos
+seoDescription: >-
+  Páginas de vendas e de captura para cursos online, mentorias e lançamentos.
+  Rápidas, integradas e focadas em conversão.
+blocks:
+  - discriminant: hero
+    value:
+      eyebrow: // infoprodutos
+      title: 'Landing pages para cursos, mentorias e '
+      highlight: lançamentos
+      text: >-
+        Páginas de captura e de vendas rápidas, integradas e pensadas para
+        converter.
+      primary:
+        label: Quero um orçamento
+        kind: whatsapp
+        value: ''
+      secondary:
+        label: Ver portfólio
+        kind: link
+        value: /portfolio
+      visual: mockup
+  - discriminant: pains
+    value:
+      title: Tráfego caro merece uma página que converte
+      tone: white
+      items:
+        - title: Página lenta
+          text: Cada segundo a mais derruba a conversão e encarece o lead.
+        - title: Construtor genérico
+          text: Templates iguais aos de todo mundo não diferenciam sua oferta.
+        - title: Integrações quebradas
+          text: Lead que não chega no e-mail marketing é dinheiro perdido.
+  - discriminant: checklist
+    value:
+      title: O que o seu site terá
+      tone: light
+      items:
+        - Página de captura e página de vendas
+        - Estrutura de copy pensada para conversão
+        - Integração com Hotmart, Kiwify, Eduzz e similares
+        - Integração com e-mail marketing e CRM
+        - Pixel do Meta, Google Ads e Analytics
+        - Carregamento ultrarrápido
+  - discriminant: steps
+    value:
+      eyebrow: como trabalhamos
+      title: Do primeiro contato ao site no ar
+      text: ''
+      tone: white
+      items:
+        - title: Conversa
+          text: Entendemos seu negócio, seu público e o que você precisa alcançar.
+        - title: Proposta
+          text: Você recebe escopo, prazo e investimento claros, sem letras miúdas.
+        - title: Criação
+          text: Desenhamos e desenvolvemos o projeto, com rodadas de revisão.
+        - title: No ar
+          text: Publicamos, configuramos o SEO inicial e seguimos dando suporte.
+  - discriminant: faq
+    value:
+      title: Perguntas frequentes
+      tone: light
+      items:
+        - question: Vocês fazem a página de obrigado e a de checkout?
+          answer: >-
+            Fazemos a página de obrigado. O checkout é o da sua plataforma
+            (Hotmart, Kiwify etc.), que integramos à página.
+        - question: Em quanto tempo fica pronta?
+          answer: >-
+            Uma landing page costuma ficar pronta em 1 a 2 semanas após o
+            recebimento dos conteúdos.
+        - question: Posso reaproveitar a página no próximo lançamento?
+          answer: >-
+            Sim. Deixamos a estrutura pronta para você atualizar datas e
+            ofertas.
+  - discriminant: cta
+    value:
+      title: Seu próximo lançamento merece uma página à altura
+      text: Conte sua ideia. A resposta vem de quem vai desenvolver.
+      tone: primary
+      action:
+        label: Chamar no WhatsApp
+        kind: whatsapp
+        value: ''
+      anchor: contato

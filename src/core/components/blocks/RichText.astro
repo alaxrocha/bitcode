@@ -1,0 +1,23 @@
+---
+import Section from '../ui/Section.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import { md } from '@core/lib/markdown';
+import type { Tone } from '@core/lib/types';
+
+interface Props {
+  tone?: Extract<Tone, 'white' | 'light'>;
+  eyebrow?: string;
+  title?: string;
+  /** Markdown */
+  body: string;
+}
+
+const { tone = 'white', eyebrow, title, body } = Astro.props;
+---
+
+<Section tone={tone} spacing="md">
+  <div class="mx-auto max-w-3xl">
+    {title && <SectionHeading eyebrow={eyebrow} title={title} class="mb-8" />}
+    <div class="prose-bit" set:html={md(body)} />
+  </div>
+</Section>

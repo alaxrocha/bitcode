@@ -1,0 +1,67 @@
+title: Política de Privacidade
+whatsappMessage: ''
+seoTitle: Política de Privacidade
+seoDescription: Como a bitCode coleta, usa e protege seus dados pessoais, de acordo com a LGPD.
+blocks:
+  - discriminant: hero
+    value:
+      eyebrow: ''
+      title: Política de Privacidade
+      highlight: ''
+      text: 'Última atualização: [data]'
+      primary:
+        label: ''
+        kind: whatsapp
+        value: ''
+      secondary:
+        label: ''
+        kind: link
+        value: ''
+      visual: none
+  - discriminant: richText
+    value:
+      eyebrow: ''
+      title: ''
+      tone: white
+      body: |-
+        > **Modelo inicial.** Revise este texto (de preferência com um profissional jurídico) antes de publicar o site.
+
+        A **bitCode** ("nós") respeita a sua privacidade. Esta política explica quais dados pessoais coletamos, para que os usamos e quais são os seus direitos, conforme a Lei Geral de Proteção de Dados (Lei nº 13.709/2018, "LGPD").
+
+        ## 1. Quem é o controlador dos dados
+
+        [Razão social ou nome completo], [CNPJ ou CPF], com contato pelo e-mail **contato@bitcode.dev.br**.
+
+        ## 2. Quais dados coletamos
+
+        - **Dados que você nos envia** pelo formulário de contato: nome, WhatsApp, e-mail, serviço de interesse e a mensagem.
+        - **Conversas pelo WhatsApp**, quando você inicia o contato por lá.
+        - **Dados de navegação** agregados e anônimos (páginas visitadas, tipo de dispositivo), coletados pelo Cloudflare Web Analytics, que não usa cookies nem identifica você individualmente.
+
+        ## 3. Para que usamos os dados
+
+        - Responder ao seu contato e enviar propostas que você solicitou (base legal: procedimentos preliminares a contrato, art. 7º, V).
+        - Prestar os serviços contratados (execução de contrato).
+        - Entender, de forma agregada, como o site é usado para melhorá-lo (legítimo interesse).
+
+        Não vendemos nem alugamos seus dados.
+
+        ## 4. Com quem compartilhamos
+
+        Apenas com fornecedores necessários para o funcionamento do site e do atendimento, como hospedagem (Cloudflare), envio de e-mails e o WhatsApp (Meta). Esses fornecedores tratam os dados conforme suas próprias políticas e a legislação aplicável.
+
+        ## 5. Por quanto tempo guardamos
+
+        Pelo tempo necessário para atender à finalidade da coleta ou para cumprir obrigações legais. Contatos que não viraram projeto são excluídos em até [12] meses.
+
+        ## 6. Seus direitos
+
+        Você pode, a qualquer momento, pedir confirmação de tratamento, acesso, correção, anonimização, portabilidade ou exclusão dos seus dados, além de revogar o consentimento. Basta escrever para **contato@bitcode.dev.br**.
+
+        ## 7. Cookies
+
+        Este site não usa cookies de rastreamento ou publicidade. Caso isso mude, esta política será atualizada e pediremos seu consentimento.
+
+        ## 8. Alterações
+
+        Esta política pode ser atualizada. A data no topo indica a versão mais recente.
