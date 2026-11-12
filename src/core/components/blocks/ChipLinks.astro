@@ -1,0 +1,32 @@
+---
+import Section from '../ui/Section.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import type { ChipItem, Tone } from '@core/lib/types';
+
+interface Props {
+  tone?: Extract<Tone, 'white' | 'light'>;
+  title: string;
+  text?: string;
+  items: ChipItem[];
+}
+
+const { tone = 'white', title, text, items } = Astro.props;
+---
+
+<Section tone={tone} spacing="md">
+  <SectionHeading title={title} text={text} align="center" />
+  <ul class="mt-9 flex flex-wrap justify-center gap-3">
+    {
+      items.map((c) => (
+        <li>
+          <a
+            href={c.href}
+            class="inline-flex min-h-12 items-center rounded-full border border-[#d6ccf5] px-5 text-ink no-underline transition hover:border-primary hover:bg-primary-tint hover:text-primary"
+          >
+            {c.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Section>

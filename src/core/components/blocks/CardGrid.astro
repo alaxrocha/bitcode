@@ -1,0 +1,57 @@
+---
+import Section from '../ui/Section.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import type { CardItem, Tone } from '@core/lib/types';
+
+interface Props {
+  id?: string;
+  tone?: Tone;
+  eyebrow?: string;
+  title: string;
+  text?: string;
+  items: CardItem[];
+  /** Linha final abaixo dos cards (aceita HTML simples, como <strong> e <a>) */
+  footnote?: string;
+}
+
+const { id, tone = 'white', eyebrow, title, text, items, footnote } = Astro.props;
+---
+
+<Section id={id} tone={tone}>
+  <SectionHeading eyebrow={eyebrow} title={title} text={text} />
+  <ul class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {
+      items.map((item) => {
+        const Tag = item.href ? 'a' : 'div';
+        return (
+          <li class="flex">
+            <Tag
+              href={item.href}
+              class:list={[
+                'group flex w-full flex-col gap-4 rounded-[var(--radius-card)] border border-line bg-white p-8 text-ink no-underline transition',
+                item.href && 'hover:-translate-y-1 hover:border-primary-soft hover:shadow-lg hover:shadow-primary/10',
+              ]}
+            >
+              {item.icon && (
+                <span
+                  class="flex size-13 items-center justify-center rounded-xl bg-primary-tint font-mono text-lg font-medium text-primary"
+                  aria-hidden="true"
+                >
+                  {item.icon}
+                </span>
+              )}
+              <h3 class="text-2xl font-semibold">{item.title}</h3>
+              <p class="leading-relaxed text-muted">{item.text}</p>
+              {item.href && (
+                <span class="mt-auto pt-2 text-[15px] font-medium text-primary">
+                  {item.linkLabel ?? 'Saiba mais'} <span aria-hidden="true" class="inline-block transition group-hover:translate-x-1">→</span>
+                </span>
+              )}
+            </Tag>
+          </li>
+        );
+      })
+    }
+  </ul>
+  {footnote && <p class="mt-8 text-muted [&_a]:font-medium [&_strong]:font-semibold [&_strong]:text-ink" set:html={footnote} />}
+</Section>

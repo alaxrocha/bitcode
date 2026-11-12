@@ -1,0 +1,78 @@
+---
+import ActionButton from '../ui/ActionButton.astro';
+import HeroMockup from './HeroMockup.astro';
+import type { Action } from '@core/lib/types';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  /** Trecho final do título, destacado em lavanda */
+  highlight?: string;
+  text?: string;
+  primary?: Action;
+  secondary?: Action;
+  /** 'mockup' = navegador com métricas; 'none' = texto centralizado */
+  visual?: 'mockup' | 'none';
+  /** Breadcrumb ou outro conteúdo acima do título */
+  breadcrumb?: { label: string; href?: string }[];
+}
+
+const { eyebrow, title, highlight, text, primary, secondary, visual = 'mockup', breadcrumb } = Astro.props;
+const centered = visual === 'none';
+---
+
+<section class="overflow-hidden bg-dark text-white">
+  <div
+    class:list={[
+      'mx-auto grid w-full max-w-6xl items-center gap-14 px-4 py-18 sm:px-6 md:py-26',
+      !centered && 'lg:grid-cols-[1.15fr_1fr] lg:gap-16',
+    ]}
+  >
+    <div class:list={[centered && 'mx-auto max-w-3xl text-center']}>
+      {
+        breadcrumb && (
+          <nav aria-label="Você está em" class="mb-6 text-sm text-faint-dark">
+            <ol class:list={['flex flex-wrap gap-2', centered && 'justify-center']}>
+              {breadcrumb.map((b, i) => (
+                <li class="flex gap-2">
+                  {i > 0 && <span aria-hidden="true">›</span>}
+                  {b.href ? (
+                    <a href={b.href} class="text-faint-dark hover:text-white">
+                      {b.label}
+                    </a>
+                  ) : (
+                    <span aria-current="page" class="text-muted-dark">
+                      {b.label}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )
+      }
+      {eyebrow && <p class="eyebrow-dark mb-5">{eyebrow}</p>}
+      <h1 class="text-4xl leading-[1.05] font-semibold sm:text-5xl lg:text-6xl">
+        {title}
+        {highlight && <span class="text-primary-soft">{highlight}</span>}
+      </h1>
+      {text && <p class:list={['mt-6 text-lg leading-relaxed text-muted-dark', !centered && 'max-w-xl']}>{text}</p>}
+      {
+        (primary || secondary) && (
+          <div class:list={['mt-9 flex flex-wrap gap-3', centered && 'justify-center']}>
+            {primary && <ActionButton action={primary} variant="accent" size="lg" />}
+            {secondary && <ActionButton action={secondary} variant="ghost" size="lg" />}
+          </div>
+        )
+      }
+    </div>
+
+    {
+      visual === 'mockup' && (
+        <div class="hidden sm:block">
+          <HeroMockup />
+        </div>
+      )
+    }
+  </div>
+</section>

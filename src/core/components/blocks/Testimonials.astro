@@ -1,0 +1,51 @@
+---
+import Section from '../ui/Section.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import type { Testimonial, Tone } from '@core/lib/types';
+
+interface Props {
+  tone?: Extract<Tone, 'white' | 'light'>;
+  eyebrow?: string;
+  title: string;
+  items: Testimonial[];
+}
+
+const { tone = 'light', eyebrow, title, items } = Astro.props;
+
+const initials = (name: string) =>
+  name
+    .replace(/[\[\]]/g, '')
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase() ?? '')
+    .join('');
+---
+
+<Section tone={tone}>
+  <SectionHeading eyebrow={eyebrow} title={title} />
+  <ul class="mt-12 grid gap-6 md:grid-cols-2">
+    {
+      items.map((t) => (
+        <li>
+          <figure class:list={['h-full rounded-[var(--radius-card)] border border-line p-8', tone === 'light' ? 'bg-white' : 'bg-light']}>
+            <blockquote class="text-lg leading-relaxed">“{t.quote}”</blockquote>
+            <figcaption class="mt-6 flex items-center gap-3">
+              {t.photo ? (
+                <img src={t.photo} alt="" width="44" height="44" loading="lazy" class="size-11 rounded-full object-cover" />
+              ) : (
+                <span class="flex size-11 items-center justify-center rounded-full bg-primary-tint text-sm font-semibold text-primary" aria-hidden="true">
+                  {initials(t.name)}
+                </span>
+              )}
+              <span>
+                <strong class="block text-[15px] font-semibold">{t.name}</strong>
+                {t.company && <span class="text-sm text-muted">{t.company}</span>}
+              </span>
+            </figcaption>
+          </figure>
+        </li>
+      ))
+    }
+  </ul>
+</Section>

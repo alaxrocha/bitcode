@@ -1,0 +1,22 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  text?: string;
+  /** true quando a seção tem fundo escuro/violeta */
+  inverted?: boolean;
+  align?: 'left' | 'center';
+  as?: 'h1' | 'h2';
+  class?: string;
+}
+
+const { eyebrow, title, text, inverted = false, align = 'left', as: Tag = 'h2', class: className } = Astro.props;
+---
+
+<div class:list={[align === 'center' && 'mx-auto text-center', 'max-w-2xl', className]}>
+  {eyebrow && <p class={inverted ? 'eyebrow-dark' : 'eyebrow'}>// {eyebrow}</p>}
+  <Tag class:list={['text-3xl font-semibold sm:text-4xl lg:text-[44px] lg:leading-[1.1]', eyebrow && 'mt-3']}>
+    {title}
+  </Tag>
+  {text && <p class:list={['mt-4 text-lg leading-relaxed', inverted ? 'text-muted-dark' : 'text-muted']}>{text}</p>}
+</div>

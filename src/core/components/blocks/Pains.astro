@@ -1,0 +1,29 @@
+---
+/** "A dor do cliente": usado nas páginas de serviço e nicho. */
+import Section from '../ui/Section.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import type { FeatureItem, Tone } from '@core/lib/types';
+
+interface Props {
+  tone?: Extract<Tone, 'white' | 'light'>;
+  title: string;
+  items: FeatureItem[];
+}
+
+const { tone = 'white', title, items } = Astro.props;
+---
+
+<Section tone={tone} spacing="md">
+  <SectionHeading title={title} />
+  <ul class="mt-10 grid gap-6 md:grid-cols-3">
+    {
+      items.map((p) => (
+        <li class="rounded-[var(--radius-card)] border border-line bg-white p-7">
+          <span class="mb-4 flex size-10 items-center justify-center rounded-lg bg-[#fff1f2] font-mono text-[#be123c]" aria-hidden="true">!</span>
+          <h3 class="text-lg font-semibold">{p.title}</h3>
+          <p class="mt-2 leading-relaxed text-muted">{p.text}</p>
+        </li>
+      ))
+    }
+  </ul>
+</Section>

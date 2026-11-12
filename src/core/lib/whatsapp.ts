@@ -1,4 +1,4 @@
-import { site } from '@site/config';
+import { site } from '@core/lib/settings';
 
 /** Monta o link do WhatsApp com mensagem pré-preenchida. */
 export function whatsappUrl(message: string = site.whatsapp.message): string {

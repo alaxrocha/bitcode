@@ -1,0 +1,26 @@
+---
+import Button from './Button.astro';
+import { resolveAction } from '@core/lib/actions';
+import type { Action } from '@core/lib/types';
+
+interface Props {
+  action: Action;
+  variant?: 'primary' | 'accent' | 'dark' | 'outline' | 'ghost';
+  size?: 'md' | 'lg';
+  class?: string;
+}
+
+const { action, variant, size, class: className } = Astro.props;
+const { href, external } = resolveAction(action);
+---
+
+<Button
+  href={href}
+  external={external}
+  variant={variant}
+  size={size}
+  icon={action.whatsapp !== undefined ? 'whatsapp' : undefined}
+  class={className}
+>
+  {action.label}
+</Button>

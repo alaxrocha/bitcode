@@ -1,4 +1,4 @@
-import { site } from '@site/config';
+import { site } from '@core/lib/settings';
 
 export interface SeoProps {
   /** Título da página, sem o nome do site. Vazio = só o nome do site (home). */
@@ -10,7 +10,7 @@ export interface SeoProps {
 }
 
 export function buildTitle(title?: string): string {
-  return title ? site.titleTemplate.replace('%s', title) : `${site.name} | Criação de Sites, Landing Pages e SEO`;
+  return title ? site.titleTemplate.replace('%s', title) : site.homeTitle;
 }
 
 export function absoluteUrl(path: string, base: URL | string = site.url): string {

@@ -1,0 +1,137 @@
+---
+/**
+ * Renderiza a lista de blocos montada no painel (campo "Blocos da página").
+ * Cada "discriminant" corresponde a um bloco definido em src/core/keystatic/blocks.ts.
+ */
+import Hero from './Hero.astro';
+import StatsBar from './StatsBar.astro';
+import CardGrid from './CardGrid.astro';
+import Features from './Features.astro';
+import PortfolioGrid from './PortfolioGrid.astro';
+import Steps from './Steps.astro';
+import ChipLinks from './ChipLinks.astro';
+import Testimonials from './Testimonials.astro';
+import Faq from './Faq.astro';
+import Cta from './Cta.astro';
+import Pains from './Pains.astro';
+import Checklist from './Checklist.astro';
+import { getPortfolio, getServices, getTestimonials, toAction } from '@core/lib/content';
+import type { CardItem } from '@core/lib/types';
+
+// O tipo exato vem do esquema do Keystatic; aqui tratamos de forma genérica.
+type Block = { discriminant: string; value: any };
+
+interface Props {
+  blocks: readonly Block[];
+}
+
+const { blocks } = Astro.props;
+const opt = (s?: string | null) => (s && s.trim() ? s : undefined);
+
+// Só o primeiro bloco de FAQ gera dados estruturados FAQPage.
+const firstFaq = blocks.findIndex((b) => b.discriminant === 'faq');
+
+const rendered = await Promise.all(
+  blocks.map(async (b, i) => {
+    const v = b.value;
+    switch (b.discriminant) {
+      case 'servicesGrid': {
+        const services = await getServices();
+        const items: CardItem[] = services.map((s) => ({
+          icon: opt(s.entry.icon),
+          title: s.entry.title,
+          text: s.entry.summary,
+          href: `/servicos/${s.slug}`,
+        }));
+        return { ...b, items };
+      }
+      case 'portfolio':
+        return {
+          ...b,
+          items: await getPortfolio({ featuredOnly: v.only === 'featured', category: opt(v.category), limit: v.limit ?? 0 }),
+        };
+      case 'testimonials':
+        return { ...b, items: await getTestimonials(v.limit ?? 0) };
+      default:
+        return { ...b, items: undefined, index: i };
+    }
+  }),
+);
+---
+
+{
+  rendered.map((b, i) => {
+    const v = b.value;
+    switch (b.discriminant) {
+      case 'hero':
+        return (
+          <Hero
+            eyebrow={opt(v.eyebrow)}
+            title={v.title}
+            highlight={opt(v.highlight)}
+            text={opt(v.text)}
+            primary={toAction(v.primary)}
+            secondary={toAction(v.secondary)}
+            visual={v.visual}
+          />
+        );
+      case 'stats':
+        return <StatsBar items={v.items} />;
+      case 'servicesGrid':
+        return (
+          <CardGrid
+            id={opt(v.anchor)}
+            eyebrow={opt(v.eyebrow)}
+            title={v.title}
+            text={opt(v.text)}
+            items={b.items as CardItem[]}
+            footnote={opt(v.footnote)}
+          />
+        );
+      case 'cardGrid':
+        return (
+          <CardGrid
+            tone={v.tone}
+            eyebrow={opt(v.eyebrow)}
+            title={v.title}
+            text={opt(v.text)}
+            items={v.items.map((c: any) => ({ ...c, icon: opt(c.icon), href: opt(c.href) }))}
+          />
+        );
+      case 'features':
+        return <Features tone={v.tone} eyebrow={opt(v.eyebrow)} title={v.title} text={opt(v.text)} items={v.items} />;
+      case 'portfolio':
+        return (
+          <PortfolioGrid
+            id="portfolio"
+            tone={v.tone}
+            eyebrow={opt(v.eyebrow)}
+            title={v.title}
+            text={opt(v.text)}
+            items={b.items as any}
+            more={toAction(v.more)}
+          />
+        );
+      case 'steps':
+        return <Steps tone={v.tone} eyebrow={opt(v.eyebrow)} title={v.title} text={opt(v.text)} items={v.items} />;
+      case 'chips':
+        return <ChipLinks tone={v.tone} title={v.title} text={opt(v.text)} items={v.items} />;
+      case 'testimonials':
+        return (b.items as any[]).length > 0 ? (
+          <Testimonials tone={v.tone} eyebrow={opt(v.eyebrow)} title={v.title} items={b.items as any} />
+        ) : null;
+      case 'faq':
+        return <Faq tone={v.tone} title={opt(v.title)} items={v.items} schema={i === firstFaq} />;
+      case 'pains':
+        return <Pains tone={v.tone} title={v.title} items={v.items} />;
+      case 'checklist':
+        return <Checklist tone={v.tone} title={v.title} items={v.items} />;
+      case 'cta': {
+        const action = toAction(v.action);
+        return action ? <Cta id={opt(v.anchor)} tone={v.tone} title={v.title} text={opt(v.text)} action={action} /> : null;
+      }
+      default:
+        return null;
+    }
+  })
+}

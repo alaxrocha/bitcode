@@ -1,0 +1,33 @@
+---
+import type { Tone } from '@core/lib/types';
+
+interface Props {
+  tone?: Tone;
+  id?: string;
+  /** Rótulo acessível quando a seção não tem título visível */
+  label?: string;
+  spacing?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const { tone = 'white', id, label, spacing = 'lg', class: className } = Astro.props;
+
+const tones: Record<Tone, string> = {
+  white: 'bg-white text-ink',
+  light: 'bg-light text-ink',
+  dark: 'bg-dark text-white',
+  primary: 'bg-primary text-white',
+};
+
+const spacings = {
+  sm: 'py-10',
+  md: 'py-16 sm:py-20',
+  lg: 'py-20 sm:py-26',
+};
+---
+
+<section id={id} aria-label={label} class:list={[tones[tone], 'scroll-mt-20', className]} data-tone={tone}>
+  <div class:list={['mx-auto w-full max-w-6xl px-4 sm:px-6', spacings[spacing]]}>
+    <slot />
+  </div>
+</section>

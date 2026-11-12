@@ -1,0 +1,62 @@
+---
+import Section from '../ui/Section.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import ActionButton from '../ui/ActionButton.astro';
+import type { Action, PortfolioItem, Tone } from '@core/lib/types';
+
+interface Props {
+  id?: string;
+  tone?: Extract<Tone, 'white' | 'light'>;
+  eyebrow?: string;
+  title: string;
+  text?: string;
+  items: PortfolioItem[];
+  more?: Action;
+}
+
+const { id, tone = 'white', eyebrow, title, text, items, more } = Astro.props;
+---
+
+<Section id={id} tone={tone}>
+  <div class="flex flex-wrap items-end justify-between gap-6">
+    <SectionHeading eyebrow={eyebrow} title={title} text={text} />
+    {more && <ActionButton action={more} variant="outline" />}
+  </div>
+  <ul class="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      items.map((p) => {
+        const Tag = p.href ? 'a' : 'div';
+        return (
+          <li>
+            <Tag href={p.href} class="group block text-ink no-underline">
+              <div class="aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] bg-light">
+                {p.image ? (
+                  <img
+                    src={p.image}
+                    alt={`Projeto ${p.title}`}
+                    loading="lazy"
+                    class="size-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div class="flex size-full items-center justify-center border-2 border-dashed border-[#d6ccf5] rounded-[var(--radius-card)] font-mono text-sm text-[#6e6787]">
+                    [ imagem do projeto ]
+                  </div>
+                )}
+              </div>
+              <div class="mt-4 flex flex-wrap items-center gap-2">
+                <h3 class="text-lg font-semibold">{p.title}</h3>
+                {p.thunderweb && (
+                  <span class="rounded-md bg-primary-tint px-2 py-0.5 text-xs font-medium text-[#5b21b6]">Thunderweb</span>
+                )}
+              </div>
+              <p class="mt-1 text-sm text-muted">
+                {p.category}
+                {p.year && ` · ${p.year}`}
+              </p>
+            </Tag>
+          </li>
+        );
+      })
+    }
+  </ul>
+</Section>

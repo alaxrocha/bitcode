@@ -1,0 +1,151 @@
+seoTitle: ''
+seoDescription: >-
+  Agência digital com mais de 20 anos de experiência. Criamos sites rápidos,
+  landing pages que convertem e estratégias de SEO para todo o Brasil.
+blocks:
+  - discriminant: hero
+    value:
+      eyebrow: <agência digital />
+      title: 'Sites rápidos, bonitos e feitos para '
+      highlight: vender.
+      text: >-
+        Criação de sites, landing pages e SEO com mais de 20 anos de experiência
+        em código. Projeto sob medida, sem template genérico.
+      primary:
+        label: Pedir orçamento no WhatsApp
+        kind: whatsapp
+        value: Olá! Vim pelo site e quero um orçamento.
+      secondary:
+        label: Ver portfólio
+        kind: link
+        value: /portfolio
+      visual: mockup
+  - discriminant: stats
+    value:
+      items:
+        - value: +20 anos
+          label: desenvolvendo para a web
+        - value: +[X]
+          label: projetos entregues
+        - value: 95+
+          label: de nota no Google PageSpeed
+        - value: Todo o Brasil
+          label: com atendimento remoto
+  - discriminant: servicesGrid
+    value:
+      eyebrow: serviços
+      title: O que fazemos
+      text: ''
+      anchor: servicos
+      footnote: >-
+        Também desenvolvemos <strong>e-commerce</strong> e <strong>sistemas sob
+        medida</strong>. <a href="/contato">Fale com a gente →</a>
+  - discriminant: features
+    value:
+      eyebrow: por que a bitCode
+      title: Feito por quem programa há mais de 20 anos
+      text: ''
+      tone: dark
+      items:
+        - title: Código de verdade
+          text: Nada de construtor pesado e cheio de plugins. Seu site é leve, seguro e é seu.
+        - title: Velocidade que o Google premia
+          text: Performance e SEO técnico pensados desde a primeira linha de código.
+        - title: Você edita o conteúdo
+          text: Um painel simples para trocar textos, fotos e publicar no blog, sem depender de ninguém.
+        - title: Fale direto com quem programa
+          text: Sem intermediários e sem telefone sem fio. Quem atende é quem desenvolve.
+  - discriminant: portfolio
+    value:
+      eyebrow: portfólio
+      title: Projetos recentes
+      text: Alguns dos trabalhos que já colocamos no ar.
+      tone: white
+      only: featured
+      category: ''
+      limit: 3
+      more:
+        label: Ver portfólio completo
+        kind: link
+        value: /portfolio
+  - discriminant: steps
+    value:
+      eyebrow: como trabalhamos
+      title: Do primeiro contato ao site no ar
+      text: ''
+      tone: light
+      items:
+        - title: Conversa
+          text: Entendemos seu negócio, seu público e o que você precisa alcançar.
+        - title: Proposta
+          text: Você recebe escopo, prazo e investimento claros, sem letras miúdas.
+        - title: Criação
+          text: Desenhamos e desenvolvemos o projeto, com rodadas de revisão.
+        - title: No ar
+          text: Publicamos, configuramos o SEO inicial e seguimos dando suporte.
+  - discriminant: chips
+    value:
+      title: Sites pensados para o seu segmento
+      text: Cada mercado tem suas particularidades. A gente já conhece as do seu.
+      tone: white
+      items:
+        - label: Advogados
+          href: /solucoes/site-para-advogados
+        - label: Clínicas e consultórios
+          href: /solucoes/site-para-clinicas
+        - label: Restaurantes
+          href: /solucoes/site-para-restaurantes
+        - label: Infoprodutores
+          href: /solucoes/landing-page-para-infoprodutores
+        - label: Prestadores de serviço
+          href: /solucoes/site-para-prestadores-de-servico
+  - discriminant: testimonials
+    value:
+      eyebrow: depoimentos
+      title: O que dizem nossos clientes
+      tone: light
+      limit: 2
+  - discriminant: faq
+    value:
+      title: Perguntas frequentes
+      tone: white
+      items:
+        - question: Quanto tempo leva para meu site ficar pronto?
+          answer: >-
+            Depende do tamanho do projeto. Uma landing page costuma ficar pronta
+            em 1 a 2 semanas e um site institucional em 2 a 4 semanas, contando a
+            partir do recebimento dos conteúdos. O prazo exato vai na proposta.
+        - question: Vou conseguir atualizar o site sozinho?
+          answer: >-
+            Sim. Todo site vem com um painel simples para você editar textos,
+            imagens e publicar posts no blog. Se preferir, também oferecemos um
+            plano de manutenção para cuidarmos disso por você.
+        - question: Vocês cuidam de domínio e hospedagem?
+          answer: >-
+            Cuidamos. Orientamos o registro do domínio, configuramos tudo e
+            hospedamos seu site em uma infraestrutura rápida e segura, com
+            certificado SSL incluso.
+        - question: Em quanto tempo o SEO traz resultado?
+          answer: >-
+            SEO é um trabalho de médio prazo. As primeiras melhorias costumam
+            aparecer entre 3 e 6 meses, variando conforme a concorrência do seu
+            mercado. Acompanhamos tudo com relatórios mensais.
+        - question: Vocês atendem fora da minha cidade?
+          answer: >-
+            Atendemos em todo o Brasil. Todo o processo é feito online, com
+            reuniões por vídeo e conversa pelo WhatsApp.
+        - question: Quanto custa um site?
+          answer: >-
+            Cada projeto é diferente, por isso preparamos um orçamento sob medida.
+            Chame a gente no WhatsApp e conte o que você precisa. A resposta é
+            rápida e sem compromisso.
+  - discriminant: cta
+    value:
+      title: Vamos tirar seu projeto do papel?
+      text: Conte sua ideia. A resposta vem de quem vai desenvolver.
+      tone: primary
+      action:
+        label: Chamar no WhatsApp
+        kind: whatsapp
+        value: ''
+      anchor: contato

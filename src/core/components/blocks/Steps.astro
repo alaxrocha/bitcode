@@ -1,0 +1,32 @@
+---
+import Section from '../ui/Section.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import type { StepItem, Tone } from '@core/lib/types';
+
+interface Props {
+  tone?: Extract<Tone, 'white' | 'light'>;
+  eyebrow?: string;
+  title: string;
+  text?: string;
+  items: StepItem[];
+}
+
+const { tone = 'light', eyebrow, title, text, items } = Astro.props;
+---
+
+<Section tone={tone}>
+  <SectionHeading eyebrow={eyebrow} title={title} text={text} />
+  <ol class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      items.map((s, i) => (
+        <li class:list={['rounded-[var(--radius-card)] border border-line p-7', tone === 'light' ? 'bg-white' : 'bg-light']}>
+          <p class="font-mono text-3xl font-medium text-primary" aria-hidden="true">
+            {String(i + 1).padStart(2, '0')}
+          </p>
+          <h3 class="mt-4 text-xl font-semibold">{s.title}</h3>
+          <p class="mt-2 leading-relaxed text-muted">{s.text}</p>
+        </li>
+      ))
+    }
+  </ol>
+</Section>

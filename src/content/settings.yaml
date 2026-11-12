@@ -1,0 +1,45 @@
+name: bitCode
+logoFirst: bit
+logoSecond: Code
+tagline: Agência digital. Sites, landing pages e SEO feitos com código de verdade.
+description: >-
+  Agência digital com mais de 20 anos de experiência. Criamos sites rápidos,
+  landing pages que convertem e estratégias de SEO para todo o Brasil.
+titleTemplate: '%s | bitCode'
+homeTitle: bitCode | Criação de Sites, Landing Pages e SEO
+url: https://bitcode.dev.br
+whatsappNumber: '5500000000000'
+whatsappMessage: Olá! Vim pelo site da bitCode e quero conversar sobre um projeto.
+email: contato@bitcode.dev.br
+serviceArea: Atendimento em todo o Brasil
+social: []
+nav:
+  - label: Serviços
+    href: /#servicos
+  - label: Portfólio
+    href: /portfolio
+  - label: Sobre
+    href: /sobre
+  - label: Blog
+    href: /blog
+  - label: Contato
+    href: /contato
+footer:
+  - title: Serviços
+    links:
+      - label: Criação de sites
+        href: /servicos/criacao-de-sites
+      - label: Landing pages
+        href: /servicos/landing-pages
+      - label: SEO
+        href: /servicos/seo
+  - title: Empresa
+    links:
+      - label: Sobre
+        href: /sobre
+      - label: Portfólio
+        href: /portfolio
+      - label: Blog
+        href: /blog
+      - label: Contato
+        href: /contato

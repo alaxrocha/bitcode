@@ -1,0 +1,53 @@
+---
+/** Ilustração do hero: janela de navegador com métricas de performance. */
+import PixelDeco from '../ui/PixelDeco.astro';
+
+interface Props {
+  domain?: string;
+  score?: string;
+}
+
+const { domain = 'seunegocio.com.br', score = '98' } = Astro.props;
+---
+
+<div class="relative" aria-hidden="true">
+  <PixelDeco class="absolute -top-7 -right-3" />
+  <div class="overflow-hidden rounded-[var(--radius-card)] border border-primary-soft/25 bg-dark-2">
+    <div class="flex items-center gap-2 border-b border-white/10 px-4 py-3.5">
+      <span class="size-2.5 rounded-full bg-[#3b2f5c]"></span>
+      <span class="size-2.5 rounded-full bg-[#3b2f5c]"></span>
+      <span class="size-2.5 rounded-full bg-[#3b2f5c]"></span>
+      <span class="ml-3 flex-1 rounded-md bg-dark px-3 py-1.5 font-mono text-xs text-faint-dark">{domain}</span>
+    </div>
+    <div class="grid gap-4 p-6 sm:p-7">
+      <div class="flex items-center gap-4">
+        <div class="flex size-23 shrink-0 items-center justify-center rounded-full border-[6px] border-accent font-heading text-3xl font-semibold">
+          {score}
+        </div>
+        <div>
+          <p class="font-medium">Performance</p>
+          <p class="mt-1 text-sm text-faint-dark">Google PageSpeed, celular</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-2.5">
+        <div class="rounded-xl bg-dark p-3.5">
+          <p class="font-heading text-xl font-semibold">0,8s</p>
+          <p class="mt-0.5 text-xs text-faint-dark">carregamento</p>
+        </div>
+        <div class="rounded-xl bg-dark p-3.5">
+          <p class="font-heading text-xl font-semibold">100</p>
+          <p class="mt-0.5 text-xs text-faint-dark">SEO</p>
+        </div>
+        <div class="rounded-xl bg-dark p-3.5">
+          <p class="font-heading text-xl font-semibold">100%</p>
+          <p class="mt-0.5 text-xs text-faint-dark">responsivo</p>
+        </div>
+      </div>
+      <pre class="overflow-x-auto rounded-xl bg-dark px-4 py-3.5 font-mono text-[13px] leading-7 text-faint-dark"><span class="text-primary-soft">const</span> site = <span class="text-accent">bitCode</span>.build({'{'}
+  rapido: <span class="text-primary-soft">true</span>,
+  noGoogle: <span class="text-primary-soft">true</span>,
+  vende: <span class="text-primary-soft">true</span>
+{'}'});</pre>
+    </div>
+  </div>
+</div>

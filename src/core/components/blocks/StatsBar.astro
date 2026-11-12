@@ -1,0 +1,23 @@
+---
+import Section from '../ui/Section.astro';
+import type { StatItem } from '@core/lib/types';
+
+interface Props {
+  items: StatItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<Section tone="light" spacing="sm" label="Números" class="border-b border-line">
+  <dl class="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
+    {
+      items.map((s) => (
+        <div class="flex flex-col-reverse">
+          <dt class="mt-1 text-[15px] text-muted">{s.label}</dt>
+          <dd class="font-heading text-3xl font-semibold text-primary sm:text-4xl">{s.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</Section>

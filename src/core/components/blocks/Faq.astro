@@ -1,0 +1,50 @@
+---
+import Section from '../ui/Section.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import type { FaqItem, Tone } from '@core/lib/types';
+
+interface Props {
+  tone?: Extract<Tone, 'white' | 'light'>;
+  title?: string;
+  items: FaqItem[];
+  /** Gera dados estruturados FAQPage (use só uma vez por página) */
+  schema?: boolean;
+}
+
+const { tone = 'white', title = 'Perguntas frequentes', items, schema = true } = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((i) => ({
+    '@type': 'Question',
+    name: i.question,
+    acceptedAnswer: { '@type': 'Answer', text: i.answer },
+  })),
+};
+---
+
+<Section tone={tone}>
+  <div class="mx-auto max-w-3xl">
+    <SectionHeading title={title} align="center" />
+    <div class="mt-12 border-t border-line">
+      {
+        items.map((i) => (
+          <details class="group border-b border-line">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-lg font-medium [&::-webkit-details-marker]:hidden">
+              {i.question}
+              <span
+                class="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-tint text-primary transition group-open:rotate-45"
+                aria-hidden="true"
+              >
+                +
+              </span>
+            </summary>
+            <p class="-mt-1 pb-6 leading-relaxed text-muted">{i.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+  {schema && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+</Section>
