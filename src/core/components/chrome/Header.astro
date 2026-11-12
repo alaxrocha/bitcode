@@ -1,0 +1,99 @@
+---
+import { site } from '@site/config';
+import { whatsappUrl } from '@core/lib/whatsapp';
+import Logo from '../ui/Logo.astro';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  whatsappMessage?: string;
+}
+
+const { whatsappMessage } = Astro.props;
+const current = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 border-b border-white/10 bg-dark/95 backdrop-blur supports-[backdrop-filter]:bg-dark/85">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6">
+    <Logo variant="dark" />
+
+    <nav aria-label="Principal" class="hidden md:block">
+      <ul class="flex items-center gap-7 text-[15px]">
+        {
+          site.nav.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class:list={[
+                  'text-[#d9d3ee] no-underline transition hover:text-white',
+                  current === link.href && 'text-white',
+                ]}
+                aria-current={current === link.href ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <div class="hidden sm:block">
+        <Button href={whatsappUrl(whatsappMessage)} icon="whatsapp" external class="whitespace-nowrap">Fale conosco</Button>
+      </div>
+      <button
+        type="button"
+        class="inline-flex size-11 items-center justify-center rounded-[var(--radius-btn)] text-white hover:bg-white/10 md:hidden"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-toggle
+      >
+        <span data-icon-open><Icon name="menu" size={24} /></span>
+        <span data-icon-close class="hidden"><Icon name="close" size={24} /></span>
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobile-menu" aria-label="Menu móvel" class="hidden border-t border-white/10 md:hidden" data-menu>
+    <ul class="flex flex-col px-4 py-3">
+      {
+        site.nav.map((link) => (
+          <li>
+            <a href={link.href} class="block py-3 text-lg text-white no-underline">
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="pt-3 pb-2">
+        <Button href={whatsappUrl(whatsappMessage)} icon="whatsapp" external class="w-full">
+          Fale conosco no WhatsApp
+        </Button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-menu]');
+  if (toggle && menu) {
+    const setOpen = (open: boolean) => {
+      menu.classList.toggle('hidden', !open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+      toggle.querySelector('[data-icon-open]')?.classList.toggle('hidden', open);
+      toggle.querySelector('[data-icon-close]')?.classList.toggle('hidden', !open);
+    };
+    toggle.addEventListener('click', () => setOpen(menu.classList.contains('hidden')));
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  }
+</script>

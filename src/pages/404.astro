@@ -1,0 +1,20 @@
+---
+import PageLayout from '@core/layouts/PageLayout.astro';
+import Container from '@core/components/ui/Container.astro';
+import Button from '@core/components/ui/Button.astro';
+import { whatsappUrl } from '@core/lib/whatsapp';
+---
+
+<PageLayout title="Página não encontrada" noindex>
+  <section class="bg-dark text-white">
+    <Container size="narrow" class="py-28 text-center">
+      <p class="font-mono text-sm text-accent">Error 404: bit not found</p>
+      <h1 class="mt-4 text-4xl font-semibold sm:text-5xl">Ops, essa página saiu do ar</h1>
+      <p class="mt-4 text-lg text-muted-dark">O endereço pode ter mudado ou não existir mais.</p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        <Button href="/" variant="accent" size="lg">Voltar ao início</Button>
+        <Button href={whatsappUrl()} variant="ghost" size="lg" icon="whatsapp" external>Falar no WhatsApp</Button>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

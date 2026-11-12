@@ -1,0 +1,45 @@
+---
+import { site } from '@site/config';
+
+interface Props {
+  /** 'dark' = logo para fundo escuro; 'light' = para fundo claro */
+  variant?: 'dark' | 'light';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string | null;
+}
+
+const { variant = 'dark', size = 'md', href = '/' } = Astro.props;
+
+const iconSize = { sm: 24, md: 32, lg: 56 }[size];
+const textSize = { sm: 'text-xl', md: 'text-2xl', lg: 'text-5xl' }[size];
+
+const bracket = variant === 'dark' ? 'var(--color-primary-soft)' : 'var(--color-primary)';
+const slash = variant === 'dark' ? 'var(--color-accent)' : 'var(--color-dark)';
+const first = variant === 'dark' ? 'text-white' : 'text-dark';
+const second = variant === 'dark' ? 'text-primary-soft' : 'text-primary';
+
+// Símbolo </> em pixels (grade 10x10)
+const bracketPixels = [
+  [3, 2, 1], [2, 3, 1], [1, 4, 2], [2, 6, 1], [3, 7, 1],
+  [6, 2, 1], [7, 3, 1], [8, 4, 2], [7, 6, 1], [6, 7, 1],
+];
+const slashPixels = [
+  [5, 3, 2], [4, 5, 2],
+];
+
+const Tag = href ? 'a' : 'span';
+---
+
+<Tag
+  href={href ?? undefined}
+  class="inline-flex items-center gap-2.5 no-underline"
+  aria-label={href ? `${site.name}, página inicial` : undefined}
+>
+  <svg width={iconSize} height={iconSize} viewBox="0 0 10 10" aria-hidden="true" style="shape-rendering: crispEdges">
+    {bracketPixels.map(([x, y, h]) => <rect x={x} y={y} width="1" height={h} fill={bracket} />)}
+    {slashPixels.map(([x, y, h]) => <rect x={x} y={y} width="1" height={h} fill={slash} />)}
+  </svg>
+  <span class:list={['font-heading font-semibold tracking-tight', textSize]}>
+    <span class={first}>{site.logo.first}</span><span class={second}>{site.logo.second}</span>
+  </span>
+</Tag>

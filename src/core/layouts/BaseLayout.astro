@@ -1,0 +1,49 @@
+---
+import '@core/styles/base.css';
+import { site } from '@site/config';
+import { buildTitle, absoluteUrl, type SeoProps } from '@core/lib/seo';
+
+type Props = SeoProps;
+
+const { title, description = site.description, image = '/og-default.png', noindex = false } = Astro.props;
+
+const fullTitle = buildTitle(title);
+const canonical = absoluteUrl(Astro.url.pathname, Astro.site ?? site.url);
+const ogImage = absoluteUrl(image, Astro.site ?? site.url);
+---
+
+<!doctype html>
+<html lang={site.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#140d24" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={site.locale.replace('-', '_')} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <a
+      href="#conteudo"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-dark"
+    >
+      Pular para o conteúdo
+    </a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,19 @@
+---
+/** Grade decorativa de "bits", repetindo o motivo do logo. */
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+// 0 = vazio, 1 = violeta, 2 = lavanda, 3 = acento
+const grid = [
+  [1, 0, 3, 1],
+  [0, 2, 0, 1],
+];
+const fill = ['transparent', 'var(--color-primary)', 'var(--color-primary-soft)', 'var(--color-accent)'];
+---
+
+<div class:list={['grid grid-cols-4 gap-1.5', className]} aria-hidden="true">
+  {grid.flat().map((c) => <span class="block size-3.5" style={`background:${fill[c]}`} />)}
+</div>

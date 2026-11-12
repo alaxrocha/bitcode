@@ -1,0 +1,24 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/chrome/Header.astro';
+import Footer from '../components/chrome/Footer.astro';
+import WhatsAppFloat from '../components/chrome/WhatsAppFloat.astro';
+import type { SeoProps } from '@core/lib/seo';
+
+interface Props extends SeoProps {
+  /** Mensagem pré-preenchida do WhatsApp nesta página */
+  whatsappMessage?: string;
+}
+
+const { whatsappMessage, ...seo } = Astro.props;
+---
+
+<BaseLayout {...seo}>
+  <slot name="head" slot="head" />
+  <Header whatsappMessage={whatsappMessage} />
+  <main id="conteudo">
+    <slot />
+  </main>
+  <Footer />
+  <WhatsAppFloat message={whatsappMessage} />
+</BaseLayout>

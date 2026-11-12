@@ -1,0 +1,48 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+
+interface Props {
+  href: string;
+  /**
+   * primary  = violeta
+   * accent   = ciano (sobre fundo escuro)
+   * dark     = noite (sobre fundo violeta)
+   * outline  = contorno violeta (fundo claro)
+   * ghost    = contorno branco (fundo escuro)
+   */
+  variant?: 'primary' | 'accent' | 'dark' | 'outline' | 'ghost';
+  size?: 'md' | 'lg';
+  icon?: IconName;
+  external?: boolean;
+  class?: string;
+}
+
+const { href, variant = 'primary', size = 'md', icon, external = false, class: className } = Astro.props;
+
+const variants = {
+  primary: 'bg-primary text-white hover:bg-primary-hover',
+  accent: 'bg-accent text-dark hover:brightness-110',
+  dark: 'bg-dark text-white hover:bg-dark-2',
+  outline: 'border border-primary text-primary hover:bg-primary-tint',
+  ghost: 'border border-white/25 text-white hover:bg-white/10',
+};
+
+const sizes = {
+  md: 'min-h-11 px-5 py-3 text-[15px]',
+  lg: 'min-h-13 px-6 py-4 text-base',
+};
+---
+
+<a
+  href={href}
+  class:list={[
+    'inline-flex items-center justify-center gap-2.5 rounded-[var(--radius-btn)] text-center font-semibold no-underline transition',
+    variants[variant],
+    sizes[size],
+    className,
+  ]}
+  {...external ? { target: '_blank', rel: 'noopener' } : {}}
+>
+  {icon && <Icon name={icon} size={size === 'lg' ? 20 : 18} />}
+  <slot />
+</a>
