@@ -12,6 +12,7 @@ whatsappNumber: '5500000000000'
 whatsappMessage: Olá! Vim pelo site da bitCode e quero conversar sobre um projeto.
 email: contato@bitcode.dev.br
 serviceArea: Atendimento em todo o Brasil
+cfAnalyticsToken: ''
 social: []
 nav:
   - label: Serviços

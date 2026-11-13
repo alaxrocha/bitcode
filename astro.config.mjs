@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
@@ -15,6 +15,9 @@ export default defineConfig({
   site: 'https://bitcode.dev.br',
   output: 'static',
   trailingSlash: 'never',
+  // Gera /sobre.html (e não /sobre/index.html): a Cloudflare serve em /sobre,
+  // sem redirecionar para /sobre/, batendo com a URL canônica.
+  build: { format: 'file' },
   adapter: isDev
     ? undefined
     : cloudflare({
@@ -28,6 +31,17 @@ export default defineConfig({
     keystatic(),
     sitemap({ filter: (page) => !page.includes('/keystatic') }),
   ],
+  // Variáveis de ambiente (veja .env.example). Todas opcionais: sem elas o
+  // formulário responde "indisponível" e o visitante é orientado ao WhatsApp.
+  env: {
+    schema: {
+      RESEND_API_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
+      CONTACT_TO: envField.string({ context: 'server', access: 'secret', optional: true }),
+      CONTACT_FROM: envField.string({ context: 'server', access: 'secret', optional: true }),
+      TURNSTILE_SECRET_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
+      PUBLIC_TURNSTILE_SITE_KEY: envField.string({ context: 'client', access: 'public', optional: true }),
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
   },

@@ -6,12 +6,16 @@ import { collection, config, fields, singleton } from '@keystatic/core';
 import { pageBlocks } from './src/core/keystatic/blocks';
 import { seoFields } from './src/core/keystatic/fields';
 
-// Local durante o desenvolvimento. Em produção (Fase 6) definir
-// PUBLIC_KEYSTATIC_STORAGE=github e PUBLIC_KEYSTATIC_REPO=dono/repo.
-const storage =
-  import.meta.env.PUBLIC_KEYSTATIC_STORAGE === 'github'
-    ? ({ kind: 'github', repo: import.meta.env.PUBLIC_KEYSTATIC_REPO as `${string}/${string}` } as const)
-    : ({ kind: 'local' } as const);
+// Repositório onde o painel online grava o conteúdo (por cliente: trocar aqui).
+const GITHUB_REPO = 'alaxrocha/bitcode';
+
+// `npm run dev`: modo local (grava direto nos arquivos).
+// Site publicado: modo GitHub (cada salvamento vira um commit, que dispara novo deploy).
+// Para testar o modo GitHub no dev, defina PUBLIC_KEYSTATIC_STORAGE=github no .env.
+const useGithub = !import.meta.env.DEV || import.meta.env.PUBLIC_KEYSTATIC_STORAGE === 'github';
+const storage = useGithub
+  ? ({ kind: 'github', repo: GITHUB_REPO } as const)
+  : ({ kind: 'local' } as const);
 
 const serviceSchema = {
   title: fields.slug({ name: { label: 'Nome' } }),
@@ -58,6 +62,10 @@ export default config({
         whatsappMessage: fields.text({ label: 'Mensagem padrão do WhatsApp', multiline: true }),
         email: fields.text({ label: 'E-mail' }),
         serviceArea: fields.text({ label: 'Área de atendimento' }),
+        cfAnalyticsToken: fields.text({
+          label: 'Cloudflare Web Analytics: token',
+          description: 'Painel da Cloudflare > Web Analytics > site > "token". Sem cookies, dispensa banner. Vazio = desligado.',
+        }),
         social: fields.array(
           fields.object({ label: fields.text({ label: 'Rede' }), href: fields.url({ label: 'Endereço' }) }),
           { label: 'Redes sociais', itemLabel: (p) => p.fields.label.value || 'Rede' },

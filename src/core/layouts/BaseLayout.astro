@@ -33,7 +33,26 @@ const ogImage = absoluteUrl(image, Astro.site ?? site.url);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    {
+      image === '/og-default.png' && (
+        <>
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+        </>
+      )
+    }
     <meta name="twitter:card" content="summary_large_image" />
+
+    {
+      import.meta.env.PROD && site.cfAnalyticsToken && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: site.cfAnalyticsToken })}
+        />
+      )
+    }
 
     <slot name="head" />
   </head>

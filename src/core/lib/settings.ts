@@ -21,6 +21,7 @@ export interface SiteConfig {
   whatsapp: { number: string; message: string };
   email: string;
   serviceArea: string;
+  cfAnalyticsToken: string;
   social: { label: string; href: string }[];
   nav: NavLink[];
   footer: { title: string; links: NavLink[] }[];
@@ -40,6 +41,7 @@ export const site: SiteConfig = {
   whatsapp: { number: s.whatsappNumber.replace(/\D/g, ''), message: s.whatsappMessage },
   email: s.email,
   serviceArea: s.serviceArea,
+  cfAnalyticsToken: s.cfAnalyticsToken.trim(),
   social: s.social.filter((x) => x.href).map((x) => ({ label: x.label, href: x.href! })),
   nav: s.nav.map((l) => ({ ...l })),
   footer: s.footer.map((c) => ({ title: c.title, links: c.links.map((l) => ({ ...l })) })),
