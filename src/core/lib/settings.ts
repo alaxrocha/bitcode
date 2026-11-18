@@ -22,6 +22,9 @@ export interface SiteConfig {
   email: string;
   serviceArea: string;
   cfAnalyticsToken: string;
+  /** Site publicado mostra só a página "em construção" (o dev mostra o site completo). */
+  comingSoon: boolean;
+  comingSoonText: string;
   social: { label: string; href: string }[];
   nav: NavLink[];
   footer: { title: string; links: NavLink[] }[];
@@ -42,6 +45,8 @@ export const site: SiteConfig = {
   email: s.email,
   serviceArea: s.serviceArea,
   cfAnalyticsToken: s.cfAnalyticsToken.trim(),
+  comingSoon: s.comingSoon && !import.meta.env.DEV,
+  comingSoonText: s.comingSoonText,
   social: s.social.filter((x) => x.href).map((x) => ({ label: x.label, href: x.href! })),
   nav: s.nav.map((l) => ({ ...l })),
   footer: s.footer.map((c) => ({ title: c.title, links: c.links.map((l) => ({ ...l })) })),

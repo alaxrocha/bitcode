@@ -3,6 +3,8 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '../components/chrome/Header.astro';
 import Footer from '../components/chrome/Footer.astro';
 import WhatsAppFloat from '../components/chrome/WhatsAppFloat.astro';
+import ComingSoon from '../components/chrome/ComingSoon.astro';
+import { site } from '@core/lib/settings';
 import type { SeoProps } from '@core/lib/seo';
 
 interface Props extends SeoProps {
@@ -13,12 +15,20 @@ interface Props extends SeoProps {
 const { whatsappMessage, ...seo } = Astro.props;
 ---
 
-<BaseLayout {...seo}>
-  <slot name="head" slot="head" />
-  <Header whatsappMessage={whatsappMessage} />
-  <main id="conteudo">
-    <slot />
-  </main>
-  <Footer />
-  <WhatsAppFloat message={whatsappMessage} />
-</BaseLayout>
+{
+  site.comingSoon ? (
+    <BaseLayout title="Em construção" noindex>
+      <ComingSoon />
+    </BaseLayout>
+  ) : (
+    <BaseLayout {...seo}>
+      <slot name="head" slot="head" />
+      <Header whatsappMessage={whatsappMessage} />
+      <main id="conteudo">
+        <slot />
+      </main>
+      <Footer />
+      <WhatsAppFloat message={whatsappMessage} />
+    </BaseLayout>
+  )
+}

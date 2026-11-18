@@ -1,11 +1,12 @@
-title: Projeto 1
-client: '[ Cliente 1 ]'
+title: Thunderweb Hosting
+client: Thunderweb
 year: '[ano]'
 category: site
 featured: true
-thunderweb: false
-technologies: []
-link: null
+thunderweb: true
+technologies:
+  - php
+cover: /images/portfolio/thunderweb-hosting/cover.jpg
 gallery: []
 challenge: '[ o que o cliente precisava ]'
 solution: '[ o que foi feito ]'

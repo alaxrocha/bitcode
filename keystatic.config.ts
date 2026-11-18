@@ -50,6 +50,16 @@ export default config({
       path: 'src/content/settings',
       format: { data: 'yaml' },
       schema: {
+        comingSoon: fields.checkbox({
+          label: 'Site em construção',
+          description:
+            'Ligado: o site publicado mostra só a página "em construção" e não é indexado pelo Google. O npm run dev continua mostrando o site completo.',
+          defaultValue: false,
+        }),
+        comingSoonText: fields.text({
+          label: 'Texto da página "em construção"',
+          multiline: true,
+        }),
         name: fields.text({ label: 'Nome do site', validation: { isRequired: true } }),
         logoFirst: fields.text({ label: 'Logo: primeira parte (ex.: bit)' }),
         logoSecond: fields.text({ label: 'Logo: segunda parte, colorida (ex.: Code)' }),

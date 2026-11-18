@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /keystatic
-Disallow: /api/
-
-Sitemap: https://bitcode.dev.br/sitemap-index.xml
